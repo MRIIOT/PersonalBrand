@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Personal brand template - Technology Solutions & Integration Expert.">
+  <title>Home | Personal Brand Template</title>
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="https://detourdev.com/assets/img/favicion.png">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Raleway:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+  <!-- Swiper CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css">
+
+  <!-- Slick Carousel CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css">
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="assets/css/plugins.css">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/menu-responsive.css">
+  <link rel="stylesheet" href="assets/css/accordion.css">
+
+  <style>
+    .text-logo {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--text-color);
+    }
+    .customize-banner {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: var(--accent-color);
+      color: #000;
+      padding: 12px 20px;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 500;
+      z-index: 9999;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+      transition: transform 0.3s ease;
+    }
+    .customize-banner:hover {
+      transform: translateY(-3px);
+    }
+    .customize-banner i {
+      font-size: 18px;
+    }
+  </style>
+</head>
+<body>
+  <!-- Page Loader -->
+  <div class="dsn-loader">
+    <div class="loading-circle"></div>
+  </div>
+
+  <!-- Custom Cursor -->
+  <div class="cursor"></div>
+  <div class="cursor-inner"></div>
+
+  <!-- Header -->
+  <header>
+    <div class="main-navigation">
+      <a href="index.html" class="logo" data-template="logo">
+        <span class="text-logo" data-template="siteName">YourBrand</span>
+      </a>
+
+      <nav class="desktop-nav">
+        <a href="index.html" class="active">Home</a>
+        <a href="about.html">About</a>
+        <a href="services.html">Services</a>
+        <a href="solutions.html">Solutions</a>
+        <a href="process.html">Process</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+
+      <div class="nav-toggle">
+        <div class="hamburger">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu">
+    <div class="mobile-menu-inner">
+      <nav>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="solutions.html">Solutions</a></li>
+          <li><a href="process.html">Process</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="audit.html">Book A Call</a></li>
+        </ul>
+      </nav>
+      <div class="mobile-menu-social" data-template="socialLinks">
+        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+        <a href="#"><i class="fab fa-twitter"></i></a>
+        <a href="#"><i class="fab fa-github"></i></a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Hero Slider Section -->
+  <section class="hero-section">
+    <div class="hero-slider swiper">
+      <div class="swiper-wrapper" data-template="heroSlides">
+        <!-- Slides populated by template engine -->
+        <div class="swiper-slide">
+          <div class="hero-slide-bg" style="background-image: url('https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=1920');" data-overlay="5"></div>
+          <div class="hero-content">
+            <span class="sub-title mgc-up">Your Identity</span>
+            <h1 class="title mgc-up" data-delay="100">I'm a Creator</h1>
+            <p class="description mgc-up" data-delay="200">Passionate about leveraging cutting-edge solutions to solve complex challenges.</p>
+            <a href="services.html" class="btn mgc-up" data-delay="300">View Services</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Slider Navigation -->
+      <div class="hero-slider-nav">
+        <button class="slider-nav-btn prev"><i class="fas fa-arrow-left"></i></button>
+        <button class="slider-nav-btn next"><i class="fas fa-arrow-right"></i></button>
+      </div>
+
+      <!-- Progress Bar -->
+      <div class="slider-progress">
+        <div class="slider-progress-bar"></div>
+      </div>
+    </div>
+
+    <!-- Scroll Indicator -->
+    <div class="scroll-indicator">
+      <span>Scroll</span>
+      <div class="mouse"></div>
+    </div>
+  </section>
+
+  <!-- Intro Section -->
+  <section class="section-padding">
+    <div class="container">
+      <div class="intro-section">
+        <div class="intro-content mgc-left">
+          <span class="section-header sub-heading">About Me</span>
+          <h2>Solutions for Modern Challenges</h2>
+          <div data-template="shortBio">
+            <p>With extensive experience in my field, I help organizations navigate complex challenges and achieve their goals.</p>
+          </div>
+          <a href="about.html" class="btn" style="margin-top: 20px;">More About Me</a>
+        </div>
+        <div class="intro-image mgc-right">
+          <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800" alt="About" data-template-image="aboutImage">
+          <div class="image-overlay">
+            <h3 data-template="yearsExperience">10+</h3>
+            <p>Years Experience</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services Accordion Section -->
+  <section class="section-padding bg-darker">
+    <div class="container">
+      <div class="section-header text-center mgc-up">
+        <span class="sub-heading">What I Do</span>
+        <h2>Services & Expertise</h2>
+        <p>Comprehensive services tailored to your needs</p>
+      </div>
+
+      <div class="dsn-accordion services-accordion mgc-up" data-delay="200" data-template="servicesAccordion">
+        <!-- Services populated by template engine -->
+        <div class="dsn-accordion-item">
+          <div class="dsn-accordion-header">
+            <div class="dsn-accordion-title">
+              <span class="service-icon"><i class="fas fa-search"></i></span>
+              <span class="service-name">Service One</span>
+            </div>
+            <div class="dsn-accordion-icon"><i class="fas fa-plus"></i></div>
+          </div>
+          <div class="dsn-accordion-content">
+            <div class="dsn-accordion-content-inner">
+              <p>Description of this service and the value it provides.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Parallax Image Break -->
+  <section class="image-section" data-overlay="3">
+    <div class="bg-image" style="background-image: url('https://images.unsplash.com/photo-1497215728101-856f4ea42174?w=1920');" data-template-image="parallaxImage1"></div>
+  </section>
+
+  <!-- Card Slider Section -->
+  <section class="section-padding">
+    <div class="container">
+      <div class="section-header mgc-up">
+        <span class="sub-heading">Expertise</span>
+        <h2>Areas of Focus</h2>
+        <p>Specialized solutions across various domains</p>
+      </div>
+
+      <div class="card-slider mgc-up" data-delay="200" data-template="cardSlider">
+        <!-- Cards populated by template engine -->
+        <div class="card-slider-item">
+          <div class="icon"><i class="fas fa-store"></i></div>
+          <h4 class="card-title">Area One</h4>
+          <p class="card-text">Description of expertise in this area.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="section-padding bg-darker">
+    <div class="container">
+      <div class="text-center">
+        <h2 class="mgc-up">Ready to Get Started?</h2>
+        <p class="mgc-up" data-delay="100" style="max-width: 600px; margin: 20px auto 40px;">Let's discuss how I can help you achieve your goals.</p>
+        <a href="audit.html" class="btn btn-primary mgc-up" data-delay="200">Book A Free Call</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-logo">
+          <div data-template="logo">
+            <span class="text-logo" data-template="siteName">YourBrand</span>
+          </div>
+          <p data-template="footerTagline">Expert helping you leverage the right tools for growth and efficiency.</p>
+        </div>
+
+        <div class="footer-nav">
+          <h5>Quick Links</h5>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="solutions.html">Solutions</a></li>
+            <li><a href="process.html">Process</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-nav">
+          <h5>Services</h5>
+          <ul>
+            <li><a href="services.html">Discovery</a></li>
+            <li><a href="services.html">Strategy</a></li>
+            <li><a href="services.html">Implementation</a></li>
+            <li><a href="services.html">Support</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-contact">
+          <h5>Get In Touch</h5>
+          <p>Email: <a href="#" data-template="emailLink">hello@yourdomain.com</a></p>
+          <p data-template="location">Your Location</p>
+          <div class="footer-social" data-template="socialLinks">
+            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-github"></i></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p data-template="copyright">&copy; 2024 YourBrand. All Rights Reserved.</p>
+        <p data-template="poweredBy" style="display: none;">Built with Personal Brand Template</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Customize Banner -->
+  <a href="questionnaire.html" class="customize-banner">
+    <i class="fas fa-magic"></i>
+    Customize This Site
+  </a>
+
+  <!-- Scripts -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+  <script src="assets/js/config.js"></script>
+  <script src="assets/js/plugins.js"></script>
+  <script src="assets/js/mgc-grid.js"></script>
+  <script src="assets/js/template-engine.js"></script>
+  <script src="assets/js/custom.js"></script>
+</body>
+</html>

@@ -124,7 +124,13 @@
 
         <div class="contact-form mgc-right">
           <h4 style="margin-bottom: 30px;">Send a Message</h4>
-          <form id="contactForm" onsubmit="return handleSubmit(event)">
+          <form id="contactForm" action="https://formsubmit.co/YOUR_EMAIL" method="POST">
+            <!-- Formsubmit configuration -->
+            <input type="hidden" name="_subject" value="New Contact Form Submission">
+            <input type="hidden" name="_next" id="contactFormNext" value="">
+            <input type="hidden" name="_template" value="table">
+            <input type="text" name="_honey" style="display:none">
+
             <div class="form-group">
               <label for="name">Your Name *</label>
               <input type="text" id="name" name="name" class="form-control" required>
@@ -147,7 +153,6 @@
             </div>
             <button type="submit" class="btn btn-primary" style="width: 100%;">Send Message</button>
           </form>
-          <div id="formMessage" style="margin-top: 20px; display: none;"></div>
         </div>
       </div>
     </div>
@@ -205,20 +210,35 @@
   <script src="assets/js/template-engine.js"></script>
   <script src="assets/js/custom.js"></script>
   <script>
-    function handleSubmit(event) {
-      event.preventDefault();
+    // Set up Formsubmit with email from config
+    document.addEventListener('DOMContentLoaded', function() {
+      // Check localStorage first (from questionnaire), then fall back to config.js
+      var savedConfig = localStorage.getItem('siteConfig');
+      var config = savedConfig ? JSON.parse(savedConfig) : (window.siteConfig || {});
+      var email = config.contact?.email || 'hello@yourdomain.com';
+
       var form = document.getElementById('contactForm');
-      var messageDiv = document.getElementById('formMessage');
-      if (!validateForm(form)) {
-        messageDiv.innerHTML = '<p style="color: #ff4444;">Please fill in all required fields correctly.</p>';
-        messageDiv.style.display = 'block';
-        return false;
+      if (form) {
+        form.action = 'https://formsubmit.co/' + email;
       }
-      messageDiv.innerHTML = '<p style="color: #44ff44;">Thank you for your message! I will get back to you soon.</p>';
-      messageDiv.style.display = 'block';
-      form.reset();
-      return false;
-    }
+
+      // Set the _next redirect to current page with success param
+      var nextInput = document.getElementById('contactFormNext');
+      if (nextInput) {
+        nextInput.value = window.location.href.split('?')[0] + '?submitted=true';
+      }
+
+      // Check for successful submission
+      if (window.location.search.includes('submitted=true')) {
+        var formContainer = document.querySelector('.contact-form');
+        if (formContainer) {
+          var successMsg = document.createElement('div');
+          successMsg.className = 'form-success';
+          successMsg.innerHTML = '<div style="background: rgba(68, 255, 68, 0.1); border: 1px solid #44ff44; padding: 20px; margin-bottom: 20px; text-align: center;"><i class="fas fa-check-circle" style="color: #44ff44; font-size: 24px; margin-bottom: 10px; display: block;"></i><p style="color: #44ff44; margin: 0;">Thank you for your message! I will get back to you soon.</p></div>';
+          formContainer.insertBefore(successMsg, formContainer.firstChild);
+        }
+      }
+    });
   </script>
 </body>
 </html>

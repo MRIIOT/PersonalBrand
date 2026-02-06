@@ -117,7 +117,13 @@
 
         <div class="audit-form mgc-right">
           <h4 style="margin-bottom: 30px;">Schedule Your Free Call</h4>
-          <form id="auditForm" onsubmit="return handleAuditSubmit(event)">
+          <form id="auditForm" action="https://formsubmit.co/YOUR_EMAIL" method="POST">
+            <!-- Formsubmit configuration -->
+            <input type="hidden" name="_subject" value="New Audit Request">
+            <input type="hidden" name="_next" id="auditFormNext" value="">
+            <input type="hidden" name="_template" value="table">
+            <input type="text" name="_honey" style="display:none">
+
             <div class="form-group">
               <label for="name">Your Name *</label>
               <input type="text" id="name" name="name" class="form-control" required>
@@ -136,7 +142,6 @@
             </div>
             <button type="submit" class="btn btn-primary" style="width: 100%;">Request Free Call</button>
           </form>
-          <div id="auditFormMessage" style="margin-top: 20px; display: none;"></div>
           <p style="margin-top: 20px; font-size: 13px; color: var(--text-muted);">Your information will never be shared with third parties.</p>
         </div>
       </div>
@@ -230,21 +235,36 @@
   <script src="assets/js/template-engine.js"></script>
   <script src="assets/js/custom.js"></script>
   <script>
-    function handleAuditSubmit(event) {
-      event.preventDefault();
+    // Set up Formsubmit with email from config
+    document.addEventListener('DOMContentLoaded', function() {
+      // Check localStorage first (from questionnaire), then fall back to config.js
+      var savedConfig = localStorage.getItem('siteConfig');
+      var config = savedConfig ? JSON.parse(savedConfig) : (window.siteConfig || {});
+      var email = config.contact?.email || 'hello@yourdomain.com';
+
       var form = document.getElementById('auditForm');
-      var messageDiv = document.getElementById('auditFormMessage');
-      if (!validateForm(form)) {
-        messageDiv.innerHTML = '<p style="color: #ff4444;">Please fill in all required fields correctly.</p>';
-        messageDiv.style.display = 'block';
-        return false;
+      if (form) {
+        form.action = 'https://formsubmit.co/' + email;
       }
-      messageDiv.innerHTML = '<p style="color: #44ff44;">Thank you for your interest! I will reach out within 24 hours to schedule your free call.</p>';
-      messageDiv.style.display = 'block';
-      form.reset();
-      messageDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
-      return false;
-    }
+
+      // Set the _next redirect to current page with success param
+      var nextInput = document.getElementById('auditFormNext');
+      if (nextInput) {
+        nextInput.value = window.location.href.split('?')[0] + '?submitted=true';
+      }
+
+      // Check for successful submission
+      if (window.location.search.includes('submitted=true')) {
+        var formContainer = document.querySelector('.audit-form');
+        if (formContainer) {
+          var successMsg = document.createElement('div');
+          successMsg.className = 'form-success';
+          successMsg.innerHTML = '<div style="background: rgba(68, 255, 68, 0.1); border: 1px solid #44ff44; padding: 20px; margin-bottom: 20px; text-align: center;"><i class="fas fa-check-circle" style="color: #44ff44; font-size: 24px; margin-bottom: 10px; display: block;"></i><p style="color: #44ff44; margin: 0;">Thank you for your interest! I will reach out within 24 hours to schedule your free call.</p></div>';
+          formContainer.insertBefore(successMsg, formContainer.firstChild);
+          formContainer.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+      }
+    });
   </script>
 </body>
 </html>

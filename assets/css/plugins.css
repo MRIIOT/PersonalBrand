@@ -265,6 +265,14 @@
   content: '\f054';
 }
 
+/* Hide arrows on mobile - let users swipe */
+@media (max-width: 991px) {
+  .slick-prev,
+  .slick-next {
+    display: none !important;
+  }
+}
+
 /* Slick Dots */
 .slick-dots {
   position: absolute;

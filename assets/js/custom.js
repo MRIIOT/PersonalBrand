@@ -453,11 +453,8 @@
   var parallaxInitialized = false;
 
   function initHeroParallax() {
-    // Only run on desktop
-    if (window.innerWidth < 992) return;
-
-    // Parallax speed (lower = subtler effect)
-    var parallaxSpeed = 0.5;
+    // Parallax speed (lower = subtler effect, reduced on mobile for smoother performance)
+    var parallaxSpeed = window.innerWidth < 992 ? 0.3 : 0.5;
 
     function updateParallax() {
       var scrollTop = $(window).scrollTop();

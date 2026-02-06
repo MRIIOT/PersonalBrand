@@ -1587,14 +1587,19 @@ textarea.form-control {
   }
 
   /* Stack CTA buttons vertically with spacing on mobile */
-  .text-center .btn {
-    display: block;
-    margin: 0 auto 15px auto;
-    width: fit-content;
+  .text-center > div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
   }
 
-  .text-center .btn:last-child {
-    margin-bottom: 0;
+  .text-center .btn {
+    display: block;
+    margin: 0 !important;
+    width: 80%;
+    max-width: 280px;
+    text-align: center;
   }
 
   .philosophy-grid {

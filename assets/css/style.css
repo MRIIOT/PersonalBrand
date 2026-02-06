@@ -1596,7 +1596,7 @@ textarea.form-control {
 
   .text-center .btn {
     display: block;
-    margin: 0 !important;
+    margin: 0 auto !important;
     width: 80%;
     max-width: 280px;
     text-align: center;
@@ -1629,6 +1629,17 @@ textarea.form-control {
 
   .process-step {
     flex: 0 0 100%;
+  }
+
+  /* Fix zoomed images on mobile - disable fixed attachment */
+  .image-section {
+    height: 300px;
+  }
+
+  .image-section .bg-image {
+    top: 0;
+    height: 100%;
+    background-attachment: scroll;
   }
 }
 

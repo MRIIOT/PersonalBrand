@@ -1586,6 +1586,17 @@ textarea.form-control {
     text-align: center;
   }
 
+  /* Stack CTA buttons vertically with spacing on mobile */
+  .text-center .btn {
+    display: block;
+    margin: 0 auto 15px auto;
+    width: fit-content;
+  }
+
+  .text-center .btn:last-child {
+    margin-bottom: 0;
+  }
+
   .philosophy-grid {
     grid-template-columns: 1fr;
   }

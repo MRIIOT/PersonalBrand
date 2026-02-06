@@ -976,6 +976,94 @@ header.dsn-header-animation {
 }
 
 /* =============================================
+   Focus Areas Grid (Where We Can Help)
+   ============================================= */
+.focus-areas-section .focus-tagline {
+  font-size: 18px;
+  color: var(--text-muted);
+  margin-top: 15px;
+}
+
+.focus-areas-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin-top: 50px;
+}
+
+.focus-area-card {
+  position: relative;
+  height: 350px;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.focus-area-card .card-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  background-color: var(--secondary-color);
+  transition: transform 0.5s ease;
+}
+
+.focus-area-card:hover .card-bg {
+  transform: scale(1.1);
+}
+
+.focus-area-card .card-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.2) 100%);
+}
+
+.focus-area-card .card-content {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 30px;
+  z-index: 2;
+}
+
+.focus-area-card .card-category {
+  font-size: 12px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--accent-color);
+  margin-bottom: 10px;
+}
+
+.focus-area-card .card-title {
+  font-size: 24px;
+  font-weight: 600;
+  margin: 0;
+  color: #fff;
+}
+
+@media (max-width: 991px) {
+  .focus-areas-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 575px) {
+  .focus-areas-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .focus-area-card {
+    height: 280px;
+  }
+}
+
+/* =============================================
    Image Section / Parallax
    ============================================= */
 .image-section {

@@ -245,6 +245,47 @@ Include your unique value proposition and what makes you different from others i
   ],
 
   // ==========================================
+  // FOCUS AREAS (Where We Can Help)
+  // ==========================================
+  focusAreas: {
+    subheading: "Where We Can Help",
+    heading: "Areas of Expertise",
+    tagline: "Specialized guidance available • On-site or remote • Tailored to your needs",
+    areas: [
+      {
+        category: "AREA 1",
+        title: "First Focus Area",
+        image: ""
+      },
+      {
+        category: "AREA 2",
+        title: "Second Focus Area",
+        image: ""
+      },
+      {
+        category: "AREA 3",
+        title: "Third Focus Area",
+        image: ""
+      },
+      {
+        category: "AREA 4",
+        title: "Fourth Focus Area",
+        image: ""
+      },
+      {
+        category: "AREA 5",
+        title: "Fifth Focus Area",
+        image: ""
+      },
+      {
+        category: "AREA 6",
+        title: "Sixth Focus Area",
+        image: ""
+      }
+    ]
+  },
+
+  // ==========================================
   // TIMELINE / EXPERIENCE
   // ==========================================
   timeline: [

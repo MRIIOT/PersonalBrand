@@ -114,6 +114,7 @@
       this.applySocial();
       this.applyHeroSlides();
       this.applyServices();
+      this.applyFocusAreas();
       this.applySolutions();
       this.applyTimeline();
       this.applyProcess();
@@ -401,6 +402,51 @@
           });
         }
       }
+    },
+
+    // ==========================================
+    // FOCUS AREAS (Where We Can Help)
+    // ==========================================
+    applyFocusAreas: function() {
+      // Use config focusAreas, fall back to defaults from config.js
+      let focusAreas = null;
+      if (this.config.focusAreas && this.config.focusAreas.areas && this.config.focusAreas.areas.length > 0) {
+        focusAreas = this.config.focusAreas;
+      } else if (window.siteConfig && window.siteConfig.focusAreas && window.siteConfig.focusAreas.areas && window.siteConfig.focusAreas.areas.length > 0) {
+        focusAreas = window.siteConfig.focusAreas;
+      }
+
+      if (!focusAreas) {
+        console.warn('No focusAreas data found in config or window.siteConfig');
+        return;
+      }
+
+      // Apply header
+      const headerContainer = document.querySelector('[data-template="focusAreasHeader"]');
+      if (headerContainer) {
+        const subheading = headerContainer.querySelector('.sub-heading');
+        const heading = headerContainer.querySelector('h2');
+        const tagline = headerContainer.querySelector('.focus-tagline');
+
+        if (subheading && focusAreas.subheading) subheading.textContent = focusAreas.subheading;
+        if (heading && focusAreas.heading) heading.textContent = focusAreas.heading;
+        if (tagline && focusAreas.tagline) tagline.textContent = focusAreas.tagline;
+      }
+
+      // Apply cards grid
+      const container = document.querySelector('[data-template="focusAreas"]');
+      if (!container) return;
+
+      container.innerHTML = focusAreas.areas.map((area, index) => `
+        <div class="focus-area-card mgc-up" data-delay="${index * 100}">
+          <div class="card-bg" ${area.image ? `style="background-image: url('${area.image}')"` : ''}></div>
+          <div class="card-overlay"></div>
+          <div class="card-content">
+            <div class="card-category">${area.category}</div>
+            <h4 class="card-title">${area.title}</h4>
+          </div>
+        </div>
+      `).join('');
     },
 
     // ==========================================

@@ -787,6 +787,13 @@
           </a>
         </li>
         <li>
+          <a href="#focus-areas" data-section="focus-areas">
+            <i class="fas fa-th-large"></i>
+            Focus Areas
+            <span class="progress-dot"></span>
+          </a>
+        </li>
+        <li>
           <a href="#solutions" data-section="solutions">
             <i class="fas fa-industry"></i>
             Solutions
@@ -1139,6 +1146,48 @@
           <button class="btn btn-secondary" onclick="goToSection('hero')">
             <i class="fas fa-arrow-left"></i> Back
           </button>
+          <button class="btn btn-primary" onclick="goToSection('focus-areas')">
+            Next: Focus Areas <i class="fas fa-arrow-right"></i>
+          </button>
+        </div>
+      </section>
+
+      <!-- Focus Areas Section -->
+      <section class="section" id="section-focus-areas">
+        <div class="section-header">
+          <h2>Focus Areas</h2>
+          <p>Showcase your areas of expertise with image cards (like "Where We Can Help" sections).</p>
+        </div>
+
+        <div class="form-group">
+          <label for="focusSubheading">Section Subheading</label>
+          <input type="text" class="form-control" id="focusSubheading" placeholder="e.g., Where We Can Help">
+        </div>
+
+        <div class="form-group">
+          <label for="focusHeading">Section Heading</label>
+          <input type="text" class="form-control" id="focusHeading" placeholder="e.g., Areas of Expertise">
+        </div>
+
+        <div class="form-group">
+          <label for="focusTagline">Tagline</label>
+          <input type="text" class="form-control" id="focusTagline" placeholder="e.g., Specialized guidance available • On-site or remote">
+        </div>
+
+        <h4 style="margin-top: 30px; margin-bottom: 15px;">Focus Area Cards</h4>
+
+        <div id="focusAreasContainer">
+          <!-- Focus areas will be populated by JS -->
+        </div>
+
+        <button class="add-item-btn" onclick="addFocusArea()">
+          <i class="fas fa-plus"></i> Add Another Focus Area
+        </button>
+
+        <div class="section-nav">
+          <button class="btn btn-secondary" onclick="goToSection('services')">
+            <i class="fas fa-arrow-left"></i> Back
+          </button>
           <button class="btn btn-primary" onclick="goToSection('solutions')">
             Next: Solutions <i class="fas fa-arrow-right"></i>
           </button>
@@ -1161,7 +1210,7 @@
         </button>
 
         <div class="section-nav">
-          <button class="btn btn-secondary" onclick="goToSection('services')">
+          <button class="btn btn-secondary" onclick="goToSection('focus-areas')">
             <i class="fas fa-arrow-left"></i> Back
           </button>
           <button class="btn btn-primary" onclick="goToSection('experience')">
@@ -1576,6 +1625,13 @@
         setValue('copyrightName', c.footer.copyright);
       }
 
+      // Focus Areas header
+      if (c.focusAreas) {
+        setValue('focusSubheading', c.focusAreas.subheading);
+        setValue('focusHeading', c.focusAreas.heading);
+        setValue('focusTagline', c.focusAreas.tagline);
+      }
+
       // Images
       if (c.images) {
         setValue('heroBackground', c.images.heroBackground);
@@ -1618,6 +1674,13 @@
       solutionsContainer.innerHTML = '';
       (currentConfig.solutions || []).forEach((solution, i) => addSolution(solution, i));
       if (!currentConfig.solutions?.length) addSolution();
+
+      // Focus Areas
+      const focusAreasContainer = document.getElementById('focusAreasContainer');
+      focusAreasContainer.innerHTML = '';
+      const focusAreas = currentConfig.focusAreas?.areas || [];
+      focusAreas.forEach((area, i) => addFocusArea(area, i));
+      if (!focusAreas.length) addFocusArea();
 
       // Timeline
       const timelineContainer = document.getElementById('timelineContainer');
@@ -1764,6 +1827,39 @@
           <div class="form-group">
             <label>Key Features (one per line)</label>
             <textarea class="form-control" name="solution[${i}][features]" rows="3" placeholder="Feature 1&#10;Feature 2&#10;Feature 3">${(data.features || []).join('\n')}</textarea>
+          </div>
+        </div>
+      `;
+
+      container.insertAdjacentHTML('beforeend', html);
+    }
+
+    // ==========================================
+    // Focus Areas
+    // ==========================================
+    function addFocusArea(data = {}, index = null) {
+      const container = document.getElementById('focusAreasContainer');
+      const i = index !== null ? index : container.children.length;
+
+      const html = `
+        <div class="repeater" data-index="${i}">
+          <div class="repeater-header">
+            <h4>Focus Area ${i + 1}</h4>
+            <div class="repeater-actions">
+              <button class="btn-icon delete" onclick="removeRepeaterItem(this, 'focusAreas')"><i class="fas fa-trash"></i></button>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Category Label</label>
+            <input type="text" class="form-control" name="focusArea[${i}][category]" value="${data.category || ''}" placeholder="e.g., SUPPORT, DESIGN, CONSULTING">
+          </div>
+          <div class="form-group">
+            <label>Title</label>
+            <input type="text" class="form-control" name="focusArea[${i}][title]" value="${data.title || ''}" placeholder="e.g., 24/7 Support Options">
+          </div>
+          <div class="form-group">
+            <label>Background Image URL (optional)</label>
+            <input type="text" class="form-control" name="focusArea[${i}][image]" value="${data.image || ''}" placeholder="https://example.com/image.jpg">
           </div>
         </div>
       `;
@@ -2031,6 +2127,12 @@
         heroSlides: collectRepeaterData('heroSlide', ['image', 'subtitle', 'title', 'description', 'buttonText', 'buttonLink']),
         services: collectRepeaterData('service', ['icon', 'title', 'shortDesc', 'fullDesc'], ['features']),
         solutions: collectRepeaterData('solution', ['title', 'description'], ['features']),
+        focusAreas: {
+          subheading: getValue('focusSubheading') || siteConfig.focusAreas?.subheading || 'Where We Can Help',
+          heading: getValue('focusHeading') || siteConfig.focusAreas?.heading || 'Areas of Expertise',
+          tagline: getValue('focusTagline') || siteConfig.focusAreas?.tagline || '',
+          areas: collectRepeaterData('focusArea', ['category', 'title', 'image'])
+        },
         timeline: collectRepeaterData('timeline', ['period', 'title', 'description']),
         philosophy: collectRepeaterData('philosophy', ['icon', 'title', 'description']),
         testimonials: collectRepeaterData('testimonial', ['quote', 'author', 'role', 'company']),

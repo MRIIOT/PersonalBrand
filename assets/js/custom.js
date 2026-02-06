@@ -644,25 +644,21 @@
   function checkCustomizeEnabled() {
     var $customizeBanner = $('.customize-banner');
 
-    // Hide by default until we confirm the flag file exists
-    $customizeBanner.hide();
-
-    // Check if customize-enabled.json exists
-    fetch('customize-enabled.json')
+    // Show banner by default (for new users who fork the repo)
+    // Check if .disable-customization file exists to hide it
+    fetch('.disable-customization')
       .then(function(response) {
         if (response.ok) {
-          return response.json();
-        }
-        throw new Error('File not found');
-      })
-      .then(function(data) {
-        if (data && data.enabled === true) {
+          // File exists - hide the banner
+          $customizeBanner.hide();
+        } else {
+          // File doesn't exist - show the banner
           $customizeBanner.show();
         }
       })
       .catch(function() {
-        // File doesn't exist or enabled is false - keep banner hidden
-        $customizeBanner.hide();
+        // Error fetching (file doesn't exist) - show the banner
+        $customizeBanner.show();
       });
   }
 

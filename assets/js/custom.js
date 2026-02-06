@@ -22,6 +22,7 @@
     initProcessSteps();
     initLightbox();
     initHeroParallax();
+    checkCustomizeEnabled();
   });
 
   // Window Load
@@ -196,6 +197,7 @@
         autoplay: true,
         autoplaySpeed: 4000,
         pauseOnHover: true,
+        adaptiveHeight: false,
         responsive: [
           {
             breakpoint: 991,
@@ -638,5 +640,36 @@
       $('.cursor, .cursor-inner').show();
     }
   }, 250));
+
+  /* =============================================
+     Customize Mode Check
+     ============================================= */
+  function checkCustomizeEnabled() {
+    var $customizeBanner = $('.customize-banner');
+
+    // Hide by default until we confirm the flag file exists
+    $customizeBanner.hide();
+
+    // Check if customize-enabled.json exists
+    fetch('customize-enabled.json')
+      .then(function(response) {
+        if (response.ok) {
+          return response.json();
+        }
+        throw new Error('File not found');
+      })
+      .then(function(data) {
+        if (data && data.enabled === true) {
+          $customizeBanner.show();
+        }
+      })
+      .catch(function() {
+        // File doesn't exist or enabled is false - keep banner hidden
+        $customizeBanner.hide();
+      });
+  }
+
+  // Expose for external use
+  window.checkCustomizeEnabled = checkCustomizeEnabled;
 
 })(jQuery);

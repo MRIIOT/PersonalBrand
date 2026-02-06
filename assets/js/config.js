@@ -445,8 +445,7 @@ Include your unique value proposition and what makes you different from others i
   // ==========================================
   footer: {
     tagline: "Brief tagline or mission statement for the footer.",
-    copyright: "Your Name or Company",
-    showPoweredBy: true // Shows "Built with Personal Brand Template"
+    copyright: "Your Name or Company"
   }
 };
 

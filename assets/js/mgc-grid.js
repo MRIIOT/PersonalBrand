@@ -43,7 +43,10 @@
         });
 
         elements.forEach(function(el) {
-          observer.observe(el);
+          // Only observe elements that haven't been animated yet
+          if (!el.classList.contains('animated')) {
+            observer.observe(el);
+          }
         });
       } else {
         // Fallback for older browsers
@@ -242,6 +245,11 @@
           observer.observe(bar);
         });
       }
+    },
+
+    // Reinitialize animations for dynamically added elements
+    refresh: function() {
+      this.initScrollAnimations();
     }
   };
 

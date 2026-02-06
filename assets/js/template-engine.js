@@ -15,6 +15,11 @@
       await this.loadConfig();
       this.applyConfig();
       this.setupDynamicElements();
+
+      // Reinitialize scroll animations for dynamically added elements
+      if (window.MGC && typeof window.MGC.refresh === 'function') {
+        window.MGC.refresh();
+      }
     },
 
     loadConfig: async function() {
@@ -43,6 +48,8 @@
           this.config = this.mergeWithDefaults(parsed);
           this.configSource = 'localStorage';
           console.log('Config loaded from localStorage');
+          console.log('Services in config:', this.config.services?.length || 0);
+          console.log('Solutions in config:', this.config.solutions?.length || 0);
           return;
         } catch (e) {
           console.warn('Failed to parse saved config');
@@ -50,9 +57,16 @@
       }
 
       // Priority 3: Fall back to default config
-      this.config = window.siteConfig || {};
-      this.configSource = 'default';
-      console.log('Using default config');
+      if (window.siteConfig) {
+        this.config = JSON.parse(JSON.stringify(window.siteConfig));
+        this.configSource = 'default';
+        console.log('Using default config from config.js');
+        console.log('Services in config:', this.config.services?.length || 0);
+        console.log('Solutions in config:', this.config.solutions?.length || 0);
+      } else {
+        console.error('No config found! window.siteConfig is undefined');
+        this.config = {};
+      }
     },
 
     // Merge loaded config with defaults to fill any missing fields
@@ -117,8 +131,11 @@
     // BRANDING
     // ==========================================
     applyBranding: function() {
-      const branding = this.config.branding;
-      if (!branding) return;
+      // Use config branding, fall back to defaults from config.js
+      const branding = (this.config.branding && Object.keys(this.config.branding).length > 0)
+        ? this.config.branding
+        : (window.siteConfig?.branding || {});
+      if (!branding || Object.keys(branding).length === 0) return;
 
       // Apply colors as CSS variables
       if (branding.colors) {
@@ -159,8 +176,11 @@
     // PERSONAL INFO
     // ==========================================
     applyPersonalInfo: function() {
-      const personal = this.config.personal;
-      if (!personal) return;
+      // Use config personal, fall back to defaults from config.js
+      const personal = (this.config.personal && Object.keys(this.config.personal).length > 0)
+        ? this.config.personal
+        : (window.siteConfig?.personal || {});
+      if (!personal || Object.keys(personal).length === 0) return;
 
       this.replaceText('[data-template="name"]', personal.name);
       this.replaceText('[data-template="firstName"]', personal.firstName);
@@ -173,17 +193,22 @@
 
       // Full bio with line breaks
       const fullBioEls = document.querySelectorAll('[data-template="fullBio"]');
-      fullBioEls.forEach(el => {
-        el.innerHTML = personal.fullBio.split('\n\n').map(p => `<p>${p}</p>`).join('');
-      });
+      if (personal.fullBio) {
+        fullBioEls.forEach(el => {
+          el.innerHTML = personal.fullBio.split('\n\n').map(p => `<p>${p}</p>`).join('');
+        });
+      }
     },
 
     // ==========================================
     // CONTACT
     // ==========================================
     applyContact: function() {
-      const contact = this.config.contact;
-      if (!contact) return;
+      // Use config contact, fall back to defaults from config.js
+      const contact = (this.config.contact && Object.keys(this.config.contact).length > 0)
+        ? this.config.contact
+        : (window.siteConfig?.contact || {});
+      if (!contact || Object.keys(contact).length === 0) return;
 
       this.replaceText('[data-template="email"]', contact.email);
       this.replaceText('[data-template="phone"]', contact.phone);
@@ -209,8 +234,11 @@
     // SOCIAL LINKS
     // ==========================================
     applySocial: function() {
-      const social = this.config.social;
-      if (!social) return;
+      // Use config social, fall back to defaults from config.js
+      const social = (this.config.social && Object.keys(this.config.social).length > 0)
+        ? this.config.social
+        : (window.siteConfig?.social || {});
+      if (!social || Object.keys(social).length === 0) return;
 
       const socialContainers = document.querySelectorAll('[data-template="socialLinks"]');
       socialContainers.forEach(container => {
@@ -244,7 +272,10 @@
     // HERO SLIDES
     // ==========================================
     applyHeroSlides: function() {
-      const slides = this.config.heroSlides;
+      // Use config heroSlides, fall back to defaults from config.js
+      const slides = (this.config.heroSlides && this.config.heroSlides.length > 0)
+        ? this.config.heroSlides
+        : (window.siteConfig?.heroSlides || []);
       if (!slides || !slides.length) return;
 
       const slidesContainer = document.querySelector('[data-template="heroSlides"]');
@@ -286,8 +317,18 @@
     // SERVICES
     // ==========================================
     applyServices: function() {
-      const services = this.config.services;
-      if (!services || !services.length) return;
+      // Use config services, fall back to defaults from config.js
+      let services = [];
+      if (this.config.services && Array.isArray(this.config.services) && this.config.services.length > 0) {
+        services = this.config.services;
+      } else if (window.siteConfig && window.siteConfig.services && window.siteConfig.services.length > 0) {
+        services = window.siteConfig.services;
+      }
+
+      if (!services.length) {
+        console.warn('No services data found in config or window.siteConfig');
+        return;
+      }
 
       // Services accordion
       const accordionContainer = document.querySelector('[data-template="servicesAccordion"]');
@@ -366,8 +407,18 @@
     // SOLUTIONS
     // ==========================================
     applySolutions: function() {
-      const solutions = this.config.solutions;
-      if (!solutions || !solutions.length) return;
+      // Use config solutions, fall back to defaults from config.js
+      let solutions = [];
+      if (this.config.solutions && Array.isArray(this.config.solutions) && this.config.solutions.length > 0) {
+        solutions = this.config.solutions;
+      } else if (window.siteConfig && window.siteConfig.solutions && window.siteConfig.solutions.length > 0) {
+        solutions = window.siteConfig.solutions;
+      }
+
+      if (!solutions.length) {
+        console.warn('No solutions data found in config or window.siteConfig');
+        return;
+      }
 
       const container = document.querySelector('[data-template="solutions"]');
       if (!container) return;
@@ -402,7 +453,10 @@
     // TIMELINE
     // ==========================================
     applyTimeline: function() {
-      const timeline = this.config.timeline;
+      // Use config timeline, fall back to defaults from config.js
+      const timeline = (this.config.timeline && this.config.timeline.length > 0)
+        ? this.config.timeline
+        : (window.siteConfig?.timeline || []);
       if (!timeline || !timeline.length) return;
 
       const container = document.querySelector('[data-template="timeline"]');
@@ -423,7 +477,10 @@
     // PROCESS
     // ==========================================
     applyProcess: function() {
-      const process = this.config.process;
+      // Use config process, fall back to defaults from config.js
+      const process = (this.config.process && this.config.process.length > 0)
+        ? this.config.process
+        : (window.siteConfig?.process || []);
       if (!process || !process.length) return;
 
       // Process steps
@@ -467,7 +524,10 @@
     // TESTIMONIALS
     // ==========================================
     applyTestimonials: function() {
-      const testimonials = this.config.testimonials;
+      // Use config testimonials, fall back to defaults from config.js
+      const testimonials = (this.config.testimonials && this.config.testimonials.length > 0)
+        ? this.config.testimonials
+        : (window.siteConfig?.testimonials || []);
       if (!testimonials || !testimonials.length) return;
 
       const container = document.querySelector('[data-template="testimonials"]');
@@ -508,7 +568,10 @@
     // PHILOSOPHY
     // ==========================================
     applyPhilosophy: function() {
-      const philosophy = this.config.philosophy;
+      // Use config philosophy, fall back to defaults from config.js
+      const philosophy = (this.config.philosophy && this.config.philosophy.length > 0)
+        ? this.config.philosophy
+        : (window.siteConfig?.philosophy || []);
       if (!philosophy || !philosophy.length) return;
 
       const container = document.querySelector('[data-template="philosophy"]');
@@ -527,7 +590,10 @@
     // PROBLEMS
     // ==========================================
     applyProblems: function() {
-      const problems = this.config.problems;
+      // Use config problems, fall back to defaults from config.js
+      const problems = (this.config.problems && this.config.problems.length > 0)
+        ? this.config.problems
+        : (window.siteConfig?.problems || []);
       if (!problems || !problems.length) return;
 
       const container = document.querySelector('[data-template="problems"]');
@@ -554,7 +620,10 @@
     // GALLERY
     // ==========================================
     applyGallery: function() {
-      const gallery = this.config.gallery;
+      // Use config gallery, fall back to defaults from config.js
+      const gallery = (this.config.gallery && this.config.gallery.length > 0)
+        ? this.config.gallery
+        : (window.siteConfig?.gallery || []);
       if (!gallery || !gallery.length) return;
 
       const container = document.querySelector('[data-template="gallery"]');
@@ -571,8 +640,11 @@
     // IMAGES
     // ==========================================
     applyImages: function() {
-      const images = this.config.images;
-      if (!images) return;
+      // Use config images, fall back to defaults from config.js
+      const images = (this.config.images && Object.keys(this.config.images).length > 0)
+        ? this.config.images
+        : (window.siteConfig?.images || {});
+      if (!images || Object.keys(images).length === 0) return;
 
       Object.keys(images).forEach(key => {
         const elements = document.querySelectorAll(`[data-template-image="${key}"]`);
@@ -590,17 +662,25 @@
     // AUDIT
     // ==========================================
     applyAudit: function() {
-      const audit = this.config.audit;
-      if (!audit) return;
+      // Use config audit, fall back to defaults from config.js
+      const audit = (this.config.audit && Object.keys(this.config.audit).length > 0)
+        ? this.config.audit
+        : (window.siteConfig?.audit || {});
+      if (!audit || Object.keys(audit).length === 0) return;
 
       this.replaceText('[data-template="auditTitle"]', audit.title);
       this.replaceText('[data-template="auditSubtitle"]', audit.subtitle);
       this.replaceText('[data-template="auditDescription"]', audit.description);
       this.replaceText('[data-template="auditDuration"]', audit.duration);
 
+      // Use audit benefits, fall back to defaults from config.js
+      const benefits = (audit.benefits && audit.benefits.length > 0)
+        ? audit.benefits
+        : (window.siteConfig?.audit?.benefits || []);
+
       const benefitsContainer = document.querySelector('[data-template="auditBenefits"]');
-      if (benefitsContainer && audit.benefits) {
-        benefitsContainer.innerHTML = audit.benefits.map(benefit => `
+      if (benefitsContainer && benefits.length > 0) {
+        benefitsContainer.innerHTML = benefits.map(benefit => `
           <div class="audit-benefit-item">
             <div class="icon"><i class="${benefit.icon}"></i></div>
             <div>
@@ -616,8 +696,11 @@
     // SEO
     // ==========================================
     applySEO: function() {
-      const seo = this.config.seo;
-      if (!seo) return;
+      // Use config seo, fall back to defaults from config.js
+      const seo = (this.config.seo && Object.keys(this.config.seo).length > 0)
+        ? this.config.seo
+        : (window.siteConfig?.seo || {});
+      if (!seo || Object.keys(seo).length === 0) return;
 
       // Update title
       if (seo.siteTitle) {
@@ -641,18 +724,14 @@
     // FOOTER
     // ==========================================
     applyFooter: function() {
-      const footer = this.config.footer;
-      if (!footer) return;
+      // Use config footer, fall back to defaults from config.js
+      const footer = (this.config.footer && Object.keys(this.config.footer).length > 0)
+        ? this.config.footer
+        : (window.siteConfig?.footer || {});
+      if (!footer || Object.keys(footer).length === 0) return;
 
       this.replaceText('[data-template="footerTagline"]', footer.tagline);
       this.replaceText('[data-template="copyright"]', `© ${new Date().getFullYear()} ${footer.copyright}. All Rights Reserved.`);
-
-      if (footer.showPoweredBy) {
-        const poweredBy = document.querySelector('[data-template="poweredBy"]');
-        if (poweredBy) {
-          poweredBy.style.display = 'block';
-        }
-      }
     },
 
     // ==========================================

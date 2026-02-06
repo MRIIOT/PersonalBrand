@@ -855,6 +855,9 @@
             <li>GitHub Pages will automatically serve your customized site!</li>
           </ol>
           <p class="info-note"><i class="fas fa-info-circle"></i> Local preview uses browser storage. For persistent hosting on GitHub Pages, you must commit the exported JSON file to your repo.</p>
+          <hr style="border-color: rgba(100, 150, 255, 0.2); margin: 15px 0;">
+          <p><strong>To disable customization after deployment:</strong></p>
+          <p style="color: var(--text-muted); font-size: 13px;">Edit <code>customize-enabled.json</code> and set <code>"enabled": false</code>, or delete the file entirely. This will hide the "Customize This Site" button and prevent access to this questionnaire.</p>
         </div>
       </div>
 
@@ -1398,11 +1401,33 @@
     // Initialization
     // ==========================================
     document.addEventListener('DOMContentLoaded', function() {
-      loadExistingConfig();
-      setupEventListeners();
-      initRepeaterFields();
-      updatePreview();
+      // Check if customization is enabled before initializing
+      checkCustomizeAccess().then(function(enabled) {
+        if (!enabled) {
+          // Redirect to home page if customization is disabled
+          document.body.innerHTML = '<div style="display: flex; align-items: center; justify-content: center; height: 100vh; text-align: center; color: #fff; font-family: sans-serif;"><div><h1>Customization Disabled</h1><p>The site owner has disabled customization.</p><a href="index.html" style="color: #c5a47e;">Return to Home</a></div></div>';
+          return;
+        }
+        loadExistingConfig();
+        setupEventListeners();
+        initRepeaterFields();
+        updatePreview();
+      });
     });
+
+    // Check if customization is enabled via flag file
+    async function checkCustomizeAccess() {
+      try {
+        const response = await fetch('customize-enabled.json');
+        if (response.ok) {
+          const data = await response.json();
+          return data && data.enabled === true;
+        }
+      } catch (e) {
+        // File doesn't exist
+      }
+      return false;
+    }
 
     function loadExistingConfig() {
       // Try to load from localStorage
@@ -2024,8 +2049,7 @@
         },
         footer: {
           tagline: getValue('footerTagline') || siteConfig.footer?.tagline || '',
-          copyright: getValue('copyrightName') || siteConfig.footer?.copyright || '',
-          showPoweredBy: true
+          copyright: getValue('copyrightName') || siteConfig.footer?.copyright || ''
         },
         // Use current config if available, otherwise fall back to defaults
         process: (currentConfig.process && currentConfig.process.length > 0) ? currentConfig.process : siteConfig.process,

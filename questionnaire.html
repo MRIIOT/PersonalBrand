@@ -864,7 +864,7 @@
           <p class="info-note"><i class="fas fa-info-circle"></i> Local preview uses browser storage. For persistent hosting on GitHub Pages, you must commit the exported JSON file to your repo.</p>
           <hr style="border-color: rgba(100, 150, 255, 0.2); margin: 15px 0;">
           <p><strong>To disable customization after deployment:</strong></p>
-          <p style="color: var(--text-muted); font-size: 13px;">Edit <code>customize-enabled.json</code> and set <code>"enabled": false</code>, or delete the file entirely. This will hide the "Customize This Site" button and prevent access to this questionnaire.</p>
+          <p style="color: var(--text-muted); font-size: 13px;">Create an empty file named <code>.disable-customization</code> in your repository root. This will hide the "Customize This Site" button. To re-enable, simply delete the file.</p>
         </div>
       </div>
 
@@ -1464,18 +1464,18 @@
       });
     });
 
-    // Check if customization is enabled via flag file
+    // Check if customization is enabled (disabled if .disable-customization file exists)
     async function checkCustomizeAccess() {
       try {
-        const response = await fetch('customize-enabled.json');
+        const response = await fetch('.disable-customization');
         if (response.ok) {
-          const data = await response.json();
-          return data && data.enabled === true;
+          // File exists - customization is disabled
+          return false;
         }
       } catch (e) {
-        // File doesn't exist
+        // File doesn't exist - customization is enabled
       }
-      return false;
+      return true;
     }
 
     function loadExistingConfig() {

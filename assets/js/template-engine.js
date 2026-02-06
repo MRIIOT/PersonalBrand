@@ -8,27 +8,75 @@
 
   const TemplateEngine = {
     config: null,
+    configSource: null, // Track where config came from
 
-    init: function() {
-      // Load config from localStorage or use default
-      this.loadConfig();
+    init: async function() {
+      // Load config with priority: JSON file > localStorage > default
+      await this.loadConfig();
       this.applyConfig();
       this.setupDynamicElements();
     },
 
-    loadConfig: function() {
-      // Try to load from localStorage first
+    loadConfig: async function() {
+      // Priority 1: Try to fetch site-config.json (for GitHub Pages persistence)
+      try {
+        const response = await fetch('site-config.json?v=' + Date.now());
+        if (response.ok) {
+          const jsonConfig = await response.json();
+          // Use JSON config if it has valid structure (has personal and branding sections)
+          if (jsonConfig && jsonConfig.personal && jsonConfig.branding) {
+            this.config = this.mergeWithDefaults(jsonConfig);
+            this.configSource = 'json';
+            console.log('Config loaded from site-config.json');
+            return;
+          }
+        }
+      } catch (e) {
+        console.log('No custom site-config.json found, checking localStorage...');
+      }
+
+      // Priority 2: Try localStorage (for local preview/testing)
       const savedConfig = localStorage.getItem('siteConfig');
       if (savedConfig) {
         try {
-          this.config = JSON.parse(savedConfig);
+          const parsed = JSON.parse(savedConfig);
+          this.config = this.mergeWithDefaults(parsed);
+          this.configSource = 'localStorage';
+          console.log('Config loaded from localStorage');
+          return;
         } catch (e) {
-          console.warn('Failed to parse saved config, using default');
-          this.config = window.siteConfig || {};
+          console.warn('Failed to parse saved config');
         }
-      } else {
-        this.config = window.siteConfig || {};
       }
+
+      // Priority 3: Fall back to default config
+      this.config = window.siteConfig || {};
+      this.configSource = 'default';
+      console.log('Using default config');
+    },
+
+    // Merge loaded config with defaults to fill any missing fields
+    mergeWithDefaults: function(config) {
+      const defaults = window.siteConfig || {};
+      const merged = JSON.parse(JSON.stringify(defaults));
+
+      // Deep merge config into defaults
+      Object.keys(config).forEach(key => {
+        if (config[key] !== null && config[key] !== undefined) {
+          if (Array.isArray(config[key])) {
+            // For arrays, use config version if it has items, otherwise keep defaults
+            merged[key] = config[key].length > 0 ? config[key] : merged[key];
+          } else if (typeof config[key] === 'object') {
+            // For objects, merge recursively
+            merged[key] = { ...merged[key], ...config[key] };
+          } else {
+            // For primitives, use config value if not empty
+            merged[key] = config[key] || merged[key];
+          }
+        }
+      });
+
+      return merged;
     },
 
     saveConfig: function(config) {
@@ -641,7 +689,7 @@
 
   // Initialize on DOM ready
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', () => TemplateEngine.init());
+    document.addEventListener('DOMContentLoaded', async () => await TemplateEngine.init());
   } else {
     TemplateEngine.init();
   }

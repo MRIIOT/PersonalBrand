@@ -529,6 +529,87 @@
       margin-bottom: 10px;
     }
 
+    /* Info Banner */
+    .info-banner {
+      background: rgba(100, 150, 255, 0.1);
+      border: 1px solid rgba(100, 150, 255, 0.3);
+      border-radius: 8px;
+      margin-bottom: 30px;
+      overflow: hidden;
+    }
+
+    .info-banner-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 15px 20px;
+      cursor: pointer;
+      transition: background 0.2s ease;
+    }
+
+    .info-banner-header:hover {
+      background: rgba(100, 150, 255, 0.05);
+    }
+
+    .info-banner-title {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 600;
+    }
+
+    .info-banner-title i {
+      font-size: 20px;
+    }
+
+    .info-toggle {
+      transition: transform 0.3s ease;
+    }
+
+    .info-banner.collapsed .info-toggle {
+      transform: rotate(-90deg);
+    }
+
+    .info-banner-content {
+      padding: 0 20px 20px;
+      border-top: 1px solid rgba(100, 150, 255, 0.2);
+      margin-top: 0;
+    }
+
+    .info-banner.collapsed .info-banner-content {
+      display: none;
+    }
+
+    .info-banner-content ol {
+      margin: 15px 0;
+      padding-left: 20px;
+    }
+
+    .info-banner-content li {
+      margin-bottom: 10px;
+      color: var(--text-muted);
+    }
+
+    .info-banner-content code {
+      background: rgba(255, 255, 255, 0.1);
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 13px;
+    }
+
+    .info-note {
+      background: rgba(255, 255, 255, 0.05);
+      padding: 12px 15px;
+      border-radius: 6px;
+      font-size: 13px;
+      margin-top: 15px;
+    }
+
+    .info-note i {
+      margin-right: 8px;
+      color: var(--accent);
+    }
+
     /* Preview Panel */
     .preview-panel {
       width: 400px;
@@ -753,6 +834,28 @@
         <a href="index.html" class="btn btn-primary" style="margin-top: 15px;">
           <i class="fas fa-external-link-alt"></i> Preview Site
         </a>
+      </div>
+
+      <!-- GitHub Pages Deployment Info -->
+      <div class="info-banner" id="deploymentInfo">
+        <div class="info-banner-header" onclick="toggleDeploymentInfo()">
+          <div class="info-banner-title">
+            <i class="fab fa-github"></i>
+            <span>GitHub Pages Deployment</span>
+          </div>
+          <i class="fas fa-chevron-down info-toggle"></i>
+        </div>
+        <div class="info-banner-content">
+          <p><strong>How to make your customizations permanent on GitHub Pages:</strong></p>
+          <ol>
+            <li>Fill out the questionnaire and click <strong>"Save & Preview"</strong> to test locally</li>
+            <li>When you're happy with your changes, click <strong>"Export"</strong> to download <code>site-config.json</code></li>
+            <li>Replace the <code>site-config.json</code> file in your GitHub repository with the downloaded file</li>
+            <li>Commit and push the changes to your repository</li>
+            <li>GitHub Pages will automatically serve your customized site!</li>
+          </ol>
+          <p class="info-note"><i class="fas fa-info-circle"></i> Local preview uses browser storage. For persistent hosting on GitHub Pages, you must commit the exported JSON file to your repo.</p>
+        </div>
       </div>
 
       <!-- Personal Info Section -->
@@ -1135,6 +1238,12 @@
         </div>
 
         <div class="form-group">
+          <label>Hero Background Image</label>
+          <input type="url" class="form-control" id="heroBackground" placeholder="https://example.com/hero-background.jpg">
+          <p class="help-text">Main background image for the hero section and page headers</p>
+        </div>
+
+        <div class="form-group">
           <label>About Page Image</label>
           <div class="image-input-group">
             <input type="url" class="form-control" id="aboutImage" placeholder="https://example.com/about-image.jpg">
@@ -1444,6 +1553,7 @@
 
       // Images
       if (c.images) {
+        setValue('heroBackground', c.images.heroBackground);
         setValue('aboutImage', c.images.aboutImage);
         setValue('parallaxImage1', c.images.parallaxImage1);
         setValue('parallaxImage2', c.images.parallaxImage2);
@@ -1901,28 +2011,46 @@
         testimonials: collectRepeaterData('testimonial', ['quote', 'author', 'role', 'company']),
         gallery: collectGalleryData(),
         images: {
-          aboutImage: getValue('aboutImage'),
-          parallaxImage1: getValue('parallaxImage1'),
-          parallaxImage2: getValue('parallaxImage2')
+          heroBackground: getValue('heroBackground') || siteConfig.images?.heroBackground || '',
+          aboutImage: getValue('aboutImage') || siteConfig.images?.aboutImage || '',
+          parallaxImage1: getValue('parallaxImage1') || siteConfig.images?.parallaxImage1 || '',
+          parallaxImage2: getValue('parallaxImage2') || siteConfig.images?.parallaxImage2 || ''
         },
         seo: {
-          siteTitle: getValue('seoTitle'),
-          siteDescription: getValue('seoDescription'),
-          keywords: getValue('seoKeywords'),
-          ogImage: getValue('ogImage')
+          siteTitle: getValue('seoTitle') || siteConfig.seo?.siteTitle || '',
+          siteDescription: getValue('seoDescription') || siteConfig.seo?.siteDescription || '',
+          keywords: getValue('seoKeywords') || siteConfig.seo?.keywords || '',
+          ogImage: getValue('ogImage') || siteConfig.seo?.ogImage || ''
         },
         footer: {
-          tagline: getValue('footerTagline'),
-          copyright: getValue('copyrightName'),
+          tagline: getValue('footerTagline') || siteConfig.footer?.tagline || '',
+          copyright: getValue('copyrightName') || siteConfig.footer?.copyright || '',
           showPoweredBy: true
         },
-        // Keep default process and problems if not customized
-        process: currentConfig.process || siteConfig.process,
-        problems: currentConfig.problems || siteConfig.problems,
+        // Use current config if available, otherwise fall back to defaults
+        process: (currentConfig.process && currentConfig.process.length > 0) ? currentConfig.process : siteConfig.process,
+        problems: (currentConfig.problems && currentConfig.problems.length > 0) ? currentConfig.problems : siteConfig.problems,
         audit: currentConfig.audit || siteConfig.audit
       };
 
       return config;
+    }
+
+    // Validate config before export
+    function validateConfig(config) {
+      const errors = [];
+
+      if (!config.personal?.firstName && !config.personal?.lastName) {
+        errors.push('Name is required');
+      }
+      if (!config.contact?.email) {
+        errors.push('Email is required');
+      }
+      if (!config.branding?.siteName) {
+        errors.push('Site name is required');
+      }
+
+      return errors;
     }
 
     function getValue(id) {
@@ -2002,6 +2130,17 @@
 
     function exportConfig() {
       const config = collectFormData();
+      const errors = validateConfig(config);
+
+      if (errors.length > 0) {
+        const proceed = confirm(
+          'Warning: The following fields are empty or missing:\n\n' +
+          '• ' + errors.join('\n• ') +
+          '\n\nDo you want to export anyway? (Missing fields will use default values)'
+        );
+        if (!proceed) return;
+      }
+
       const blob = new Blob([JSON.stringify(config, null, 2)], { type: 'application/json' });
       const url = URL.createObjectURL(blob);
       const a = document.createElement('a');
@@ -2009,6 +2148,9 @@
       a.download = 'site-config.json';
       a.click();
       URL.revokeObjectURL(url);
+
+      // Show success message
+      alert('Configuration exported! To make it permanent on GitHub Pages:\n\n1. Replace site-config.json in your repo with this file\n2. Commit and push the changes');
     }
 
     function importConfig() {
@@ -2037,6 +2179,11 @@
 
       // Reset file input
       event.target.value = '';
+    }
+
+    function toggleDeploymentInfo() {
+      const banner = document.getElementById('deploymentInfo');
+      banner.classList.toggle('collapsed');
     }
 
     function resetToDefaults() {

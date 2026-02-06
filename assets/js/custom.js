@@ -20,11 +20,15 @@
     initSolutionCards();
     initTestimonialSlider();
     initProcessSteps();
+    initLightbox();
+    initHeroParallax();
   });
 
   // Window Load
   $(window).on('load', function() {
     hideLoader();
+    // Reinitialize parallax after everything loads (including template engine)
+    setTimeout(initHeroParallax, 100);
   });
 
   /* =============================================
@@ -439,6 +443,115 @@
     }).on('mouseleave', function() {
       $(this).removeClass('active');
     });
+  }
+
+  /* =============================================
+     Hero Parallax Effect
+     ============================================= */
+  var parallaxInitialized = false;
+
+  function initHeroParallax() {
+    // Only run on desktop
+    if (window.innerWidth < 992) return;
+
+    // Parallax speed (lower = subtler effect)
+    var parallaxSpeed = 0.5;
+
+    function updateParallax() {
+      var scrollTop = $(window).scrollTop();
+
+      // Re-query elements each time (template engine may recreate them)
+      var $heroSlideBg = $('.hero-slide-bg');
+      var $heroSection = $('.hero-section');
+      var $pageHeaderBg = $('.page-header-bg');
+      var $pageHeader = $('.page-header');
+
+      // Hero slider parallax (index page) - use background-position to avoid Swiper conflicts
+      if ($heroSlideBg.length && $heroSection.length) {
+        var heroHeight = $heroSection.outerHeight();
+        if (scrollTop <= heroHeight) {
+          // Positive value makes background move down as you scroll (parallax effect)
+          var yPos = scrollTop * parallaxSpeed;
+          $heroSlideBg.css('background-position', 'center calc(50% + ' + yPos + 'px)');
+        }
+      }
+
+      // Page header parallax (internal pages) - use transform
+      if ($pageHeaderBg.length && $pageHeader.length) {
+        var headerHeight = $pageHeader.outerHeight();
+        if (scrollTop <= headerHeight) {
+          var yPos = scrollTop * parallaxSpeed;
+          $pageHeaderBg.css('transform', 'translate3d(0, ' + yPos + 'px, 0)');
+        }
+      }
+    }
+
+    // Only bind scroll event once
+    if (!parallaxInitialized) {
+      parallaxInitialized = true;
+
+      // Use requestAnimationFrame for smooth performance
+      var ticking = false;
+      $(window).on('scroll.parallax', function() {
+        if (!ticking) {
+          window.requestAnimationFrame(function() {
+            updateParallax();
+            ticking = false;
+          });
+          ticking = true;
+        }
+      });
+    }
+
+    // Initial call
+    updateParallax();
+  }
+
+  /* =============================================
+     Lightbox
+     ============================================= */
+  function initLightbox() {
+    // Create lightbox elements if they don't exist
+    if (!$('.lightbox-overlay').length) {
+      $('body').append(
+        '<div class="lightbox-overlay">' +
+        '<button class="lightbox-close"><i class="fas fa-times"></i></button>' +
+        '<div class="lightbox-content"><img src="" alt="Lightbox Image"></div>' +
+        '</div>'
+      );
+    }
+
+    var $overlay = $('.lightbox-overlay');
+    var $lightboxImg = $overlay.find('.lightbox-content img');
+
+    // Click handler for gallery items
+    $('.gallery-item img').on('click', function() {
+      var imgSrc = $(this).attr('src');
+      var imgAlt = $(this).attr('alt') || 'Gallery Image';
+
+      $lightboxImg.attr('src', imgSrc).attr('alt', imgAlt);
+      $overlay.addClass('active');
+      $('body').addClass('lightbox-open');
+    });
+
+    // Close lightbox on overlay click
+    $overlay.on('click', function(e) {
+      if ($(e.target).hasClass('lightbox-overlay') || $(e.target).hasClass('lightbox-close') || $(e.target).parent().hasClass('lightbox-close')) {
+        closeLightbox();
+      }
+    });
+
+    // Close lightbox on escape key
+    $(document).on('keyup', function(e) {
+      if (e.key === 'Escape' && $overlay.hasClass('active')) {
+        closeLightbox();
+      }
+    });
+
+    function closeLightbox() {
+      $overlay.removeClass('active');
+      $('body').removeClass('lightbox-open');
+    }
   }
 
   /* =============================================

@@ -152,33 +152,52 @@
   .desktop-nav {
     display: flex;
     align-items: center;
-    gap: 40px;
+    gap: 35px;
   }
 
   .desktop-nav a {
-    font-size: 14px;
-    font-weight: 500;
-    letter-spacing: 1px;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 2px;
     text-transform: uppercase;
     color: var(--text-color);
     position: relative;
     padding: 5px 0;
   }
 
-  .desktop-nav a::after {
+  .desktop-nav a:not(.nav-cta)::after {
     content: '';
     position: absolute;
     bottom: 0;
-    left: 0;
+    left: 50%;
     width: 0;
-    height: 1px;
-    background: var(--text-color);
-    transition: width 0.3s ease;
+    height: var(--nav-underline-height, 3px);
+    background: var(--accent-color);
+    transition: width 0.5s ease, left 0.5s ease;
   }
 
-  .desktop-nav a:hover::after,
-  .desktop-nav a.active::after {
+  .desktop-nav a:not(.nav-cta):hover::after,
+  .desktop-nav a:not(.nav-cta).active::after {
     width: 100%;
+    left: 0;
+  }
+
+  /* Nav CTA Button */
+  .desktop-nav a.nav-cta {
+    padding: 10px 20px;
+    border: 1px solid var(--accent-color);
+    color: var(--accent-color);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    transition: all 0.3s ease;
+    margin-left: 10px;
+  }
+
+  .desktop-nav a.nav-cta:hover,
+  .desktop-nav a.nav-cta.active {
+    background: var(--accent-color);
+    color: #000;
   }
 }
 

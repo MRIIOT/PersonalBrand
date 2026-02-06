@@ -446,6 +446,14 @@
   color: #000;
 }
 
+body.lightbox-open {
+  overflow: hidden;
+}
+
+.gallery-item {
+  cursor: pointer;
+}
+
 /* Video Container */
 .video-container {
   position: relative;

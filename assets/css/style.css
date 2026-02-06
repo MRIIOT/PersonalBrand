@@ -1377,6 +1377,7 @@ textarea.form-control {
   display: flex;
   align-items: center;
   gap: 80px;
+  overflow: hidden;
 }
 
 .intro-content {
@@ -1613,6 +1614,16 @@ textarea.form-control {
 
   .intro-section {
     flex-direction: column;
+  }
+
+  .intro-image .image-overlay {
+    right: 0;
+    bottom: -20px;
+    padding: 20px 25px;
+  }
+
+  .intro-image .image-overlay h3 {
+    font-size: 36px;
   }
 
   .philosophy-grid {

@@ -2210,10 +2210,26 @@
       banner.classList.toggle('collapsed');
     }
 
-    function resetToDefaults() {
+    async function resetToDefaults() {
       if (confirm('Are you sure you want to reset all settings to defaults? This cannot be undone.')) {
         localStorage.removeItem('siteConfig');
-        currentConfig = JSON.parse(JSON.stringify(siteConfig));
+
+        // Try to load site-config.json first (deployed defaults), fall back to config.js
+        try {
+          const response = await fetch('site-config.json');
+          if (response.ok) {
+            const siteConfigJson = await response.json();
+            currentConfig = JSON.parse(JSON.stringify(siteConfigJson));
+            console.log('Reset to site-config.json defaults');
+          } else {
+            throw new Error('site-config.json not found');
+          }
+        } catch (e) {
+          // Fall back to config.js defaults
+          currentConfig = JSON.parse(JSON.stringify(siteConfig));
+          console.log('Reset to config.js defaults');
+        }
+
         populateForm();
         initRepeaterFields();
         updatePreview();

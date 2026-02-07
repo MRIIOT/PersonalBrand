@@ -54,17 +54,17 @@ Your site will now load your custom configuration automatically!
 
 ### Step 5: Disable the Customization Banner (Optional)
 
-Once your site is configured, you may want to hide the "Customize This Site" button:
+Once your site is configured, you may want to disable the "Customize This Site" button:
 
 1. In your repository, navigate to the root folder
 2. Click **Add file** > **Create new file**
-3. Name the file: `.disable-customization`
+3. Name the file: `customization.disable`
 4. Leave the file content empty
 5. Click **Commit new file**
 
-The customization banner will no longer appear on your live site.
+The button will change to "Brand Yourself" and link to the GitHub template for others to create their own site.
 
-To re-enable customization later, simply delete the `.disable-customization` file.
+To re-enable customization later, simply delete the `customization.disable` file.
 
 ---
 
@@ -97,7 +97,7 @@ PersonalBrand/
 │   └── js/
 │       ├── config.js  # Default configuration
 │       └── template-engine.js  # Applies your config to pages
-└── .disable-customization  # Create to hide customize button
+└── customization.disable   # Create to show "Brand Yourself" instead
 ```
 
 ---

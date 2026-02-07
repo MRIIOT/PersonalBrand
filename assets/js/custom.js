@@ -645,8 +645,8 @@
     var $customizeBanner = $('.customize-banner');
 
     // Show banner by default (for new users who fork the repo)
-    // Check if .disable-customization file exists to change behavior
-    fetch('.disable-customization')
+    // Check if customization.disable file exists to change behavior
+    fetch('customization.disable')
       .then(function(response) {
         if (response.ok) {
           // File exists - change to "Brand Yourself" linking to GitHub

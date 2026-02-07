@@ -736,6 +736,24 @@
           </div>
         `).join('');
       }
+
+      // Handle Calendly integration
+      const contact = this.config.contact || window.siteConfig?.contact || {};
+      const calendlyUrl = contact.calendlyUrl;
+      const calendlyEmbed = document.getElementById('calendlyEmbed');
+      const auditFormContainer = document.getElementById('auditFormContainer');
+
+      if (calendlyUrl && calendlyEmbed && auditFormContainer) {
+        // Show Calendly embed, hide form
+        calendlyEmbed.style.display = 'block';
+        auditFormContainer.style.display = 'none';
+
+        // Set the Calendly URL
+        const calendlyWidget = calendlyEmbed.querySelector('.calendly-inline-widget');
+        if (calendlyWidget) {
+          calendlyWidget.setAttribute('data-url', calendlyUrl);
+        }
+      }
     },
 
     // ==========================================

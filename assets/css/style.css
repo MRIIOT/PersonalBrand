@@ -413,7 +413,7 @@ header.dsn-header-animation {
 .hero-content .description {
   font-size: 18px;
   max-width: 500px;
-  margin-bottom: 40px;
+  margin: 0 auto 40px auto;
   color: rgba(255, 255, 255, 0.8);
 }
 

@@ -1,0 +1,430 @@
+{
+  "personal": {
+    "name": "Chris Misztur",
+    "firstName": "Chris",
+    "lastName": "Misztur",
+    "title": "President & Founder, Mr. IIoT",
+    "tagline": "We build Smart Factories. Real and Virtual.",
+    "shortBio": "With two decades of experience integrating business systems into manufacturing processes at a major automotive supplier, I combine technical expertise with a keen ability to identify inefficiencies within systems. My approach emphasizes continuous learning and practical application of innovative technologies.",
+    "fullBio": "At Mr. IIoT, I am committed to leading the way in the realm of digital transformation, empowering businesses to thrive in today's fast-paced, technology-driven environment. With expertise in digital Industry 4.0 transformation services, I help organizations adapt to the latest advancements and capitalize on new opportunities.\n\nMy mission is to drive innovation through the seamless application of advanced IoT solutions, enabling businesses and manufacturers to unlock their full potential. By leveraging the connectivity and intelligence that IoT provides, I aim to revolutionize industrial processes, enhance productivity, and facilitate real-time data-driven decision-making.\n\nI developed the \"5C\" closed-loop feedback approach to Industrial Internet of Things (IIoT) implementation, which consists of five key stages: Connect, Collect, Combine, Compute, and Convey. This methodology transforms raw data into actionable knowledge, facilitating improved decision-making and operational efficiency in industrial settings.",
+    "yearsExperience": "20+",
+    "location": "Greater Chicago Area"
+  },
+  "contact": {
+    "email": "chris@mriiot.com",
+    "phone": "",
+    "website": "https://mriiot.com",
+    "calendlyUrl": "https://calendly.com/cmisztur-mriiot/30min",
+    "responseTime": "Usually within 24 hours"
+  },
+  "social": {
+    "linkedin": "https://linkedin.com/in/chrismisztur",
+    "twitter": "",
+    "github": "https://github.com/MrIIoT",
+    "instagram": "",
+    "youtube": "https://www.youtube.com/@MrIIoT",
+    "facebook": ""
+  },
+  "branding": {
+    "siteName": "Chris Misztur",
+    "logoUrl": "",
+    "faviconUrl": "",
+    "lightTheme": false,
+    "colors": {
+      "primary": "#0a0a0a",
+      "secondary": "#111111",
+      "accent": "#0077b6",
+      "text": "#ffffff",
+      "textMuted": "#999999",
+      "border": "rgba(255, 255, 255, 0.1)"
+    }
+  },
+  "heroSlides": [
+    {
+      "image": "https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?w=1920&q=80",
+      "subtitle": "Industrial IoT Expert",
+      "title": "Building Smart Factories",
+      "description": "Digitally transforming manufacturing through innovative IoT solutions and Industry 4.0 expertise.",
+      "buttonText": "Get Started",
+      "buttonLink": "contact.html"
+    },
+    {
+      "image": "https://images.unsplash.com/photo-1573865526739-10659fec78a5?w=1920&q=80",
+      "subtitle": "The SHARC Advantage",
+      "title": "Connect Your Factory",
+      "description": "The last mile of your factory network and the first mile of your information network.",
+      "buttonText": "Learn More",
+      "buttonLink": "services.html"
+    },
+    {
+      "image": "https://images.unsplash.com/photo-1543852786-1cf6624b9987?w=1920&q=80",
+      "subtitle": "DIME Software Suite",
+      "title": "Universal Connectivity",
+      "description": "40+ protocol connectors with AI-powered configuration and neuromorphic analytics.",
+      "buttonText": "Explore DIME",
+      "buttonLink": "https://datainmotionenterprise.com"
+    },
+    {
+      "image": "https://images.unsplash.com/photo-1495360010541-f48722b34f7d?w=1920&q=80",
+      "subtitle": "Two Decades of Experience",
+      "title": "Digital Transformation",
+      "description": "Empowering manufacturers to make fact-based decisions with real-time data insights.",
+      "buttonText": "About Me",
+      "buttonLink": "about.html"
+    }
+  ],
+  "services": [
+    {
+      "icon": "fas fa-industry",
+      "title": "Digital Industry 4.0",
+      "shortDesc": "Transform your manufacturing operations with cutting-edge Industry 4.0 solutions.",
+      "fullDesc": "Our digital Industry 4.0 transformation services help organizations adapt to the latest advancements and capitalize on new opportunities. We guide your team through implementing smart technology integrated with your current manufacturing process to provide real-time information for fact-based decisions.",
+      "features": ["Smart factory implementation", "Real-time monitoring", "Predictive analytics", "Process optimization"]
+    },
+    {
+      "icon": "fas fa-network-wired",
+      "title": "Business System Integration",
+      "shortDesc": "Seamlessly connect your operational technology with information technology systems.",
+      "fullDesc": "We design custom business systems including EDI portals, SSCC traceability, and automated order processing. Our solutions integrate with ERP, WMS, and platforms like SPS Commerce—automating purchase orders, invoicing, and shipping notices. Weekly check-ins and 5-minute email response times.",
+      "features": ["EDI/ERP integration", "Automated order processing", "Custom portals", "5-min response time"]
+    },
+    {
+      "icon": "fas fa-robot",
+      "title": "Industrial Automation",
+      "shortDesc": "Custom software and middleware to make your hardware run seamlessly.",
+      "fullDesc": "We develop customized software, hardware, and middleware solutions tailored to your specific needs. Our middleware toolset connects diverse systems—from factory equipment to client databases—enabling devices like barcode scanners and printers to work together with your networks in real time.",
+      "features": ["Custom middleware", "Hardware/software integration", "Real-time connectivity", "Responsive support"]
+    },
+    {
+      "icon": "fas fa-microchip",
+      "title": "SHARC IoT Adapter",
+      "shortDesc": "Universal IoT sensor adapter with 5-minute installation that bridges existing machinery with the digital world.",
+      "fullDesc": "The SHARC (Simple Hardware Adapter for Remote Communications) connects analog (0-10V, 4-20mA) and discrete (PNP, NPN) sensors using MQTT for data transmission. Powered via PoE or 24Vdc, it features 100 Mbit Ethernet, Wi-Fi, and Bluetooth connectivity. Integrates with custom Grafana dashboards for real-time and historical machine analytics. Compatible with MTConnect, OPC-UA, and SparkplugB standards.",
+      "features": ["Universal sensor connectivity", "5-minute installation", "Grafana dashboards", "MQTT & standard protocols"]
+    },
+    {
+      "icon": "fas fa-database",
+      "title": "DIME Software Suite",
+      "shortDesc": "Enterprise industrial connectivity platform with 40+ protocol connectors and AI-powered analytics.",
+      "fullDesc": "Data In Motion Enterprise (DIME) provides universal industrial connectivity with 40+ native protocol connectors including OPC-UA, Modbus, Ethernet/IP, MTConnect, and MQTT/SparkplugB. Features real-time streaming with millisecond latency, AI-generated configurations from natural language, Wireshark-like data visibility, and neuromorphic continuous learning for anomaly detection.",
+      "features": ["40+ protocol connectors", "AI-powered configuration", "Real-time analytics", "Neuromorphic learning"]
+    }
+  ],
+  "solutions": [
+    {
+      "title": "Discrete Manufacturing",
+      "description": "Partnering with global industrial manufacturers on digital transformation initiatives. We provide system integration consulting including open-source FANUC data collector adapters for seamless communication between existing systems and CNC controls.",
+      "features": ["FANUC integration", "System consulting", "Open-source solutions", "CNC connectivity"]
+    },
+    {
+      "title": "Metal Fabrication",
+      "description": "Specialized solutions for metal stamping, forming, and fabrication facilities to monitor press performance, track tooling, and ensure quality.",
+      "features": ["Press monitoring", "Tool tracking", "Tonnage analysis", "Die protection"]
+    },
+    {
+      "title": "Automotive Supply Chain",
+      "description": "End-to-end visibility for automotive suppliers with real-time production data, traceability, and supplier quality management.",
+      "features": ["Supplier integration", "Traceability systems", "Just-in-time support", "Quality documentation"]
+    },
+    {
+      "title": "EDI & Order Automation",
+      "description": "Custom EDI system integration connecting SPS Commerce and ERP platforms. Automate order processing, invoicing, and Advanced Shipping Notices (ASN) for major customers like Grainger and Zoro—running 7 days a week with zero manual entry.",
+      "features": ["EDI integration", "ERP connectivity", "Automated invoicing", "ASN processing"]
+    },
+    {
+      "title": "Food & Beverage",
+      "description": "Custom SSCC traceability systems for FDA food safety compliance. We design solutions that integrate with your ERP and WMS while deploying SHARC sensors for real-time productivity and automated print-and-apply functionality.",
+      "features": ["FDA compliance", "SSCC traceability", "ERP/WMS integration", "24/7 support"]
+    },
+    {
+      "title": "Packaging Operations",
+      "description": "Deploying SHARC IoT sensors on packaging machinery connected to custom Grafana dashboards for real-time and historical data on machine uptime, productivity, and performance-based employee incentives.",
+      "features": ["SHARC sensors", "Grafana dashboards", "Uptime tracking", "Productivity incentives"]
+    },
+    {
+      "title": "Industrial Equipment OEMs",
+      "description": "Custom software and middleware solutions for equipment manufacturers. We write the software to make your custom-built hardware run, connecting barcode scanners, printers, and labeling systems with client networks for real-time operation.",
+      "features": ["Custom software", "Middleware development", "Hardware integration", "Real-time labeling"]
+    },
+    {
+      "title": "Aerospace",
+      "description": "Connecting hundreds of pieces of industrial equipment to OT networks for world-class aerospace firms. We integrate IT and OT systems, validate data accuracy, and develop customized software for seamless analytics across diverse machinery.",
+      "features": ["IT/OT integration", "Equipment connectivity", "Data validation", "Custom analytics"]
+    },
+    {
+      "title": "Defense",
+      "description": "Secure industrial data solutions for defense contractors with stringent compliance requirements, audit trails, and controlled data environments.",
+      "features": ["Secure connectivity", "Audit trails", "Compliance management", "Controlled environments"]
+    }
+  ],
+  "focusAreas": {
+    "subheading": "Where We Can Help",
+    "heading": "Areas of Expertise",
+    "tagline": "Vendor-neutral guidance available • On-site or remote • Built for high-throughput production environments",
+    "areas": [
+      {
+        "category": "CONNECT",
+        "title": "Machine Connectivity",
+        "image": "https://images.unsplash.com/photo-1574158622682-e40e69881006?w=800&q=80"
+      },
+      {
+        "category": "COLLECT",
+        "title": "Data Acquisition",
+        "image": "https://images.unsplash.com/photo-1533738363-b7f9aef128ce?w=800&q=80"
+      },
+      {
+        "category": "COMBINE",
+        "title": "System Integration",
+        "image": "https://images.unsplash.com/photo-1543852786-1cf6624b9987?w=800&q=80"
+      },
+      {
+        "category": "COMPUTE",
+        "title": "Analytics & Insights",
+        "image": "https://images.unsplash.com/photo-1518791841217-8f162f1e1131?w=800&q=80"
+      },
+      {
+        "category": "CONVEY",
+        "title": "Actionable Insights",
+        "image": "https://images.unsplash.com/photo-1494256997604-768d1f608cac?w=800&q=80"
+      },
+      {
+        "category": "SUPPORT",
+        "title": "Training & Enablement",
+        "image": "https://images.unsplash.com/photo-1529778873920-4da4926a72c2?w=800&q=80"
+      }
+    ]
+  },
+  "timeline": [
+    {
+      "period": "1999 - 2010",
+      "title": "IT Manager at Parkview Metal Products",
+      "description": "Built the foundation of my career in manufacturing IT, managing systems and infrastructure for metal products manufacturing. Gained deep understanding of shop floor operations and the challenges of connecting disparate systems."
+    },
+    {
+      "period": "Oct 2010 - Jan 2019",
+      "title": "Digital Transformation Manager at MacLean-Fogg Company",
+      "description": "Led digital transformation initiatives for a global automotive supplier. Developed the \"5C\" closed-loop feedback approach to IIoT implementation: Connect, Collect, Combine, Compute, and Convey. This methodology transforms raw data into actionable knowledge for improved decision-making. Holder of patents including Wheel Fastener Alarm (US11034329B2) and Inventory Management and Scheduling (WO2020061175A1)."
+    },
+    {
+      "period": "Jan 2019 - Present",
+      "title": "President & Founder of Mr. IIoT",
+      "description": "Founded Mr. IIoT to help manufacturing companies embrace digital transformation. Developed the SHARC (Simple Hardware Adapter for Remote Communications) IoT sensor adapter featuring universal connectivity for analog and discrete inputs, MQTT communication, and quick 5-minute installation. Patent holder for embedded systems improving maintenance and data acquisition in manufacturing operations."
+    }
+  ],
+  "process": [
+    {
+      "title": "Discovery",
+      "shortDesc": "Understanding your operations",
+      "fullDesc": "We begin by thoroughly understanding your current manufacturing operations, pain points, and goals. This includes site visits, stakeholder interviews, and assessment of existing systems.",
+      "deliverables": ["Operations assessment", "Pain point identification", "Goal definition", "Stakeholder alignment"]
+    },
+    {
+      "title": "Design",
+      "shortDesc": "Architecting the solution",
+      "fullDesc": "Based on discovery findings, we design a tailored IIoT architecture that integrates with your existing systems while positioning you for future growth. We select the right sensors, connectivity, and platforms.",
+      "deliverables": ["System architecture", "Technology selection", "Integration plan", "ROI projection"]
+    },
+    {
+      "title": "Deploy",
+      "shortDesc": "Implementation and integration",
+      "fullDesc": "Our team works hand-in-hand with your IT/OT personnel to implement the solution. We handle hardware installation, software configuration, and system integration while minimizing disruption to operations.",
+      "deliverables": ["Hardware installation", "Software configuration", "System integration", "Data validation"]
+    },
+    {
+      "title": "Deliver",
+      "shortDesc": "Training and ongoing support",
+      "fullDesc": "We ensure your team can fully leverage the new capabilities through comprehensive training. We provide ongoing support and optimization to help you continuously improve and expand your digital transformation.",
+      "deliverables": ["User training", "Documentation", "Go-live support", "Continuous improvement"]
+    }
+  ],
+  "philosophy": [
+    {
+      "icon": "fas fa-handshake",
+      "title": "Partnership Approach",
+      "description": "We work hand-in-hand with your organization's IT/OT personnel, not as outside consultants but as partners invested in your success."
+    },
+    {
+      "icon": "fas fa-balance-scale",
+      "title": "Vendor Neutral",
+      "description": "We provide vendor-neutral guidance, recommending the best solutions for your specific needs rather than pushing particular products."
+    },
+    {
+      "icon": "fas fa-chart-line",
+      "title": "Data-Driven Decisions",
+      "description": "Every recommendation is backed by data. We help you make fact-based decisions that are accurate and reliable."
+    },
+    {
+      "icon": "fas fa-expand-arrows-alt",
+      "title": "Scalable Data Collection",
+      "description": "Our solutions scale seamlessly as your operations grow, allowing you to manage increasing volumes of machine data without sacrificing performance or insights."
+    },
+    {
+      "icon": "fas fa-key",
+      "title": "Data Ownership",
+      "description": "We empower you with full rights to your data, ensuring you have the autonomy and control needed to leverage insights effectively."
+    },
+    {
+      "icon": "fas fa-lightbulb",
+      "title": "Data Interpretation",
+      "description": "Collecting machine data is just the first step; we transform raw information into actionable insights that enhance operational efficiency and drive innovation."
+    },
+    {
+      "icon": "fas fa-code-branch",
+      "title": "Data Standardization",
+      "description": "We unify disparate data sources and ensure seamless integration across systems, enabling effective analysis through consistency and coherence."
+    },
+    {
+      "icon": "fas fa-eye",
+      "title": "Visibility",
+      "description": "Our analytics solutions provide comprehensive visibility into your machine data, allowing you to monitor performance, detect anomalies, and derive actionable insights."
+    }
+  ],
+  "problems": [
+    {
+      "problem": "Disconnected Systems",
+      "solution": "Your machines, sensors, and business systems don't communicate, creating data silos and blind spots in your operations."
+    },
+    {
+      "problem": "Reactive Maintenance",
+      "solution": "You're constantly fighting fires with unplanned downtime because you can't predict when equipment will fail."
+    },
+    {
+      "problem": "Manual Data Collection",
+      "solution": "Your team spends hours manually collecting and entering data that could be captured automatically in real-time."
+    },
+    {
+      "problem": "Lack of Visibility",
+      "solution": "You don't have real-time insight into what's happening on your shop floor, making it hard to identify and address issues quickly."
+    },
+    {
+      "problem": "Underperforming IT Vendors",
+      "solution": "Your current IT vendor struggles with industrial implementations, leaving you without the specialized IT/OT expertise needed to connect and validate your equipment data."
+    },
+    {
+      "problem": "IT/OT Skills Gap",
+      "solution": "Your team lacks the specialized knowledge to bridge operational technology with information systems, requiring prolonged investment in training or outside expertise."
+    },
+    {
+      "problem": "Generic Solutions Don't Fit",
+      "solution": "Many vendors offer one-size-fits-all products, but your unique equipment and processes require a customized, integrative approach with true Industry 4.0 expertise."
+    },
+    {
+      "problem": "Regulatory Compliance Gaps",
+      "solution": "Your existing methods struggle to meet FDA, customer, or industry traceability requirements, putting compliance and customer relationships at risk."
+    },
+    {
+      "problem": "Fragmented Systems",
+      "solution": "Your specialized devices, hardware, and software don't communicate with each other, requiring custom middleware to bridge the gaps and create a single working platform."
+    },
+    {
+      "problem": "Manual Order Processing",
+      "solution": "Your team spends hours manually entering customer orders into your ERP, creating delays, errors, and inefficiency that automated EDI integration can eliminate entirely."
+    }
+  ],
+  "testimonials": [
+    {
+      "quote": "I had a very positive experience working with Chris... He's got a real passion for his work. Bringing Chris on board was an excellent way to supplement the company's IT team.",
+      "author": "Software Engineer Manager",
+      "role": "IIoT Manager",
+      "company": "Aerospace Firm"
+    },
+    {
+      "quote": "The SHARC adapter made it easy to connect our legacy equipment without replacing machines that still had years of life left. Great ROI.",
+      "author": "Plant Manager",
+      "role": "Operations Director",
+      "company": "Metal Fabrication Company"
+    },
+    {
+      "quote": "What sets Chris apart is his deep understanding of both the technology and the manufacturing environment. He speaks our language.",
+      "author": "IT Director",
+      "role": "Director of IT",
+      "company": "Automotive Supplier"
+    },
+    {
+      "quote": "Once we started working with Mr. IIoT, it felt like we had a hired gun. We finally found true technical expertise that could seamlessly integrate with our own engineering team.",
+      "author": "Automation Engineer",
+      "role": "Automation Engineer",
+      "company": "Industrial Fluid Systems Manufacturer"
+    },
+    {
+      "quote": "Working with the SHARC IoT sensor adapter and utilizing our machine data analytics puts us in the position where we can greatly improve our production process.",
+      "author": "Guy Ockerlund",
+      "role": "President",
+      "company": "Ox Box"
+    },
+    {
+      "quote": "The team was incredibly solution-focused. They didn't just deliver a product but worked closely with us to understand our business needs and build something that worked perfectly for us.",
+      "author": "Director of IT",
+      "role": "Director of IT",
+      "company": "Nationwide Baking Company"
+    },
+    {
+      "quote": "I trust Chris and Mr. IIoT's team implicitly. Chris and his team listen, understand, and interpret our needs to create a customized solution instead of pushing some canned thing.",
+      "author": "Rob Wienhoff",
+      "role": "President",
+      "company": "Chicago Coding Systems"
+    },
+    {
+      "quote": "It's been working totally awesome. We literally don't even pay attention to it. If we run into an issue, we send Mr. IIoT an email and within five minutes I get a response.",
+      "author": "Jeff Griffin",
+      "role": "IT Manager",
+      "company": "Tempco"
+    }
+  ],
+  "gallery": [
+    "https://images.unsplash.com/photo-1573865526739-10659fec78a5?w=600&q=80",
+    "https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?w=600&q=80",
+    "https://images.unsplash.com/photo-1495360010541-f48722b34f7d?w=600&q=80",
+    "https://images.unsplash.com/photo-1574158622682-e40e69881006?w=600&q=80",
+    "https://images.unsplash.com/photo-1533738363-b7f9aef128ce?w=600&q=80",
+    "https://images.unsplash.com/photo-1543852786-1cf6624b9987?w=600&q=80"
+  ],
+  "images": {
+    "heroBackground": "https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?w=1920&q=80",
+    "aboutImage": "https://images.unsplash.com/photo-1573865526739-10659fec78a5?w=800&q=80",
+    "parallaxImage1": "https://images.unsplash.com/photo-1495360010541-f48722b34f7d?w=1920&q=80",
+    "parallaxImage2": "https://images.unsplash.com/photo-1574158622682-e40e69881006?w=1920&q=80"
+  },
+  "audit": {
+    "title": "Free IIoT Assessment",
+    "subtitle": "Let's evaluate your digital transformation readiness",
+    "description": "In this complimentary 30-minute call, we'll discuss your current manufacturing operations, identify opportunities for improvement, and outline a practical path to smart factory capabilities.",
+    "benefits": [
+      {
+        "icon": "fas fa-chart-line",
+        "title": "IIoT Readiness",
+        "description": "Understand your current digital transformation readiness and maturity level."
+      },
+      {
+        "icon": "fas fa-bullseye",
+        "title": "Quick Wins",
+        "description": "Identify quick wins and long-term opportunities for operational improvement."
+      },
+      {
+        "icon": "fas fa-balance-scale",
+        "title": "Vendor-Neutral Advice",
+        "description": "Get unbiased technology recommendations based on your specific needs."
+      },
+      {
+        "icon": "fas fa-project-diagram",
+        "title": "5C Methodology",
+        "description": "Learn about the Connect, Collect, Combine, Compute, and Convey approach."
+      },
+      {
+        "icon": "fas fa-road",
+        "title": "Custom Roadmap",
+        "description": "Receive a customized implementation roadmap for your facility."
+      }
+    ]
+  },
+  "seo": {
+    "siteTitle": "Chris Misztur - Industrial IoT Expert",
+    "siteDescription": "Building Smart Factories through digital transformation, IIoT solutions, and Industry 4.0 expertise. Two decades helping manufacturers leverage technology for operational excellence.",
+    "keywords": "IIoT, Industrial IoT, Smart Factory, Industry 4.0, Digital Transformation, Manufacturing, SHARC, DIME, MTConnect, OPC-UA",
+    "ogImage": "https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?w=1200&q=80"
+  },
+  "footer": {
+    "tagline": "Building Smart Factories. Real and Virtual.",
+    "copyright": "Chris Misztur / Mr. IIoT"
+  }
+}

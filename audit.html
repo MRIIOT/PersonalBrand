@@ -117,32 +117,42 @@
 
         <div class="audit-form mgc-right">
           <h4 style="margin-bottom: 30px;">Schedule Your Free Call</h4>
-          <form id="auditForm" action="https://formsubmit.co/YOUR_EMAIL" method="POST">
-            <!-- Formsubmit configuration -->
-            <input type="hidden" name="_subject" value="New Audit Request">
-            <input type="hidden" name="_next" id="auditFormNext" value="">
-            <input type="hidden" name="_template" value="table">
-            <input type="text" name="_honey" style="display:none">
 
-            <div class="form-group">
-              <label for="name">Your Name *</label>
-              <input type="text" id="name" name="name" class="form-control" required>
-            </div>
-            <div class="form-group">
-              <label for="email">Email Address *</label>
-              <input type="email" id="email" name="email" class="form-control" required>
-            </div>
-            <div class="form-group">
-              <label for="company">Company/Organization</label>
-              <input type="text" id="company" name="company" class="form-control">
-            </div>
-            <div class="form-group">
-              <label for="challenge">What would you like to discuss? *</label>
-              <textarea id="challenge" name="challenge" class="form-control" rows="4" placeholder="Briefly describe your situation or goals..." required></textarea>
-            </div>
-            <button type="submit" class="btn btn-primary" style="width: 100%;">Request Free Call</button>
-          </form>
-          <p style="margin-top: 20px; font-size: 13px; color: var(--text-muted);">Your information will never be shared with third parties.</p>
+          <!-- Calendly embed - shown when calendlyUrl is configured -->
+          <div id="calendlyEmbed" style="display: none;">
+            <div class="calendly-inline-widget" data-url="" style="min-width:320px;height:630px;"></div>
+            <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
+          </div>
+
+          <!-- Fallback form - shown when no calendlyUrl -->
+          <div id="auditFormContainer">
+            <form id="auditForm" action="https://formsubmit.co/YOUR_EMAIL" method="POST">
+              <!-- Formsubmit configuration -->
+              <input type="hidden" name="_subject" value="New Audit Request">
+              <input type="hidden" name="_next" id="auditFormNext" value="">
+              <input type="hidden" name="_template" value="table">
+              <input type="text" name="_honey" style="display:none">
+
+              <div class="form-group">
+                <label for="name">Your Name *</label>
+                <input type="text" id="name" name="name" class="form-control" required>
+              </div>
+              <div class="form-group">
+                <label for="email">Email Address *</label>
+                <input type="email" id="email" name="email" class="form-control" required>
+              </div>
+              <div class="form-group">
+                <label for="company">Company/Organization</label>
+                <input type="text" id="company" name="company" class="form-control">
+              </div>
+              <div class="form-group">
+                <label for="challenge">What would you like to discuss? *</label>
+                <textarea id="challenge" name="challenge" class="form-control" rows="4" placeholder="Briefly describe your situation or goals..." required></textarea>
+              </div>
+              <button type="submit" class="btn btn-primary" style="width: 100%;">Request Free Call</button>
+            </form>
+            <p style="margin-top: 20px; font-size: 13px; color: var(--text-muted);">Your information will never be shared with third parties.</p>
+          </div>
         </div>
       </div>
     </div>

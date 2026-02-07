@@ -1,0 +1,55 @@
+# Chris Misztur - Mr. IIoT
+
+> Chris Misztur is an Industrial IoT expert and founder of Mr. IIoT, specializing in digital transformation, smart factory implementation, and Industry 4.0 solutions. With 20+ years of experience in manufacturing IT/OT integration, he helps manufacturers connect legacy equipment, collect real-time data, and make fact-based decisions.
+
+Key information:
+
+- Creator of the "5C" methodology for IIoT implementation: Connect, Collect, Combine, Compute, and Convey
+- Developer of the SHARC (Simple Hardware Adapter for Remote Communications) IoT sensor adapter
+- Expertise spans automotive, aerospace, defense, food & beverage, metal fabrication, and packaging industries
+- Vendor-neutral consulting approach with focus on data ownership and standardization
+- Located in the Greater Chicago Area
+
+## Services
+
+- [Digital Industry 4.0](services.html): Smart factory implementation, real-time monitoring, predictive analytics, and process optimization for manufacturing operations
+- [Business System Integration](services.html): EDI/ERP integration, automated order processing, custom portals with 5-minute email response time
+- [Industrial Automation](services.html): Custom middleware development connecting factory equipment to client databases and networks
+- [SHARC IoT Adapter](services.html): Universal sensor adapter with 5-minute installation supporting analog (0-10V, 4-20mA) and discrete (PNP, NPN) inputs via MQTT, compatible with MTConnect, OPC-UA, and SparkplugB
+- [DIME Software Suite](https://datainmotionenterprise.com): Enterprise industrial connectivity platform with 40+ native protocol connectors and AI-powered configuration
+
+## Industry Solutions
+
+- [Discrete Manufacturing](solutions.html): FANUC integration, CNC connectivity, open-source data collector adapters
+- [Metal Fabrication](solutions.html): Press monitoring, tool tracking, tonnage analysis, die protection
+- [Automotive Supply Chain](solutions.html): Real-time production data, traceability, supplier quality management
+- [Food & Beverage](solutions.html): FDA compliance, SSCC traceability systems, ERP/WMS integration
+- [Packaging Operations](solutions.html): SHARC sensors with Grafana dashboards for uptime and productivity tracking
+- [Aerospace](solutions.html): IT/OT integration for hundreds of industrial equipment pieces
+- [Defense](solutions.html): Secure industrial data solutions with audit trails and compliance management
+
+## Process
+
+- [Discovery](process.html): Operations assessment, pain point identification, stakeholder alignment
+- [Design](process.html): System architecture, technology selection, integration planning, ROI projection
+- [Deploy](process.html): Hardware installation, software configuration, system integration, data validation
+- [Deliver](process.html): User training, documentation, go-live support, continuous improvement
+
+## Pages
+
+- [Home](index.html): Overview of services and expertise areas
+- [About](about.html): Professional background, timeline, and core philosophy
+- [Services](services.html): Detailed service offerings and capabilities
+- [Solutions](solutions.html): Industry-specific solutions and case applications
+- [Process](process.html): Engagement methodology, common problems solved, and client testimonials
+- [Contact](contact.html): Contact form and communication details
+- [Book A Call](audit.html): Free IIoT assessment scheduling with Calendly integration
+
+## Contact
+
+- Email: chris@mriiot.com
+- Website: https://mriiot.com
+- LinkedIn: https://linkedin.com/in/chrismisztur
+- GitHub: https://github.com/MrIIoT
+- YouTube: https://www.youtube.com/@MrIIoT
+- Calendly: https://calendly.com/cmisztur-mriiot/30min

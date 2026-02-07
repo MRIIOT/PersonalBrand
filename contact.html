@@ -205,10 +205,27 @@
   <script src="assets/js/custom.js"></script>
   <script>
     // Set up Formsubmit with email from config
-    document.addEventListener('DOMContentLoaded', function() {
-      // Check localStorage first (from questionnaire), then fall back to config.js
+    document.addEventListener('DOMContentLoaded', async function() {
+      // Check localStorage first, then site-config.json, then config.js
+      var config;
       var savedConfig = localStorage.getItem('siteConfig');
-      var config = savedConfig ? JSON.parse(savedConfig) : (window.siteConfig || {});
+
+      if (savedConfig) {
+        config = JSON.parse(savedConfig);
+      } else {
+        // Try to load site-config.json
+        try {
+          var response = await fetch('site-config.json');
+          if (response.ok) {
+            config = await response.json();
+          } else {
+            config = window.siteConfig || {};
+          }
+        } catch (e) {
+          config = window.siteConfig || {};
+        }
+      }
+
       var email = config.contact?.email || 'hello@yourdomain.com';
 
       var form = document.getElementById('contactForm');

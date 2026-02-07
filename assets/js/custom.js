@@ -645,19 +645,20 @@
     var $customizeBanner = $('.customize-banner');
 
     // Show banner by default (for new users who fork the repo)
-    // Check if .disable-customization file exists to hide it
+    // Check if .disable-customization file exists to change behavior
     fetch('.disable-customization')
       .then(function(response) {
         if (response.ok) {
-          // File exists - hide the banner
-          $customizeBanner.hide();
-        } else {
-          // File doesn't exist - show the banner
-          $customizeBanner.show();
+          // File exists - change to "Brand Yourself" linking to GitHub
+          $customizeBanner
+            .attr('href', 'https://github.com/mriiot/PersonalBrand')
+            .attr('target', '_blank')
+            .html('<i class="fas fa-rocket"></i> Brand Yourself');
         }
+        $customizeBanner.show();
       })
       .catch(function() {
-        // Error fetching (file doesn't exist) - show the banner
+        // Error fetching (file doesn't exist) - show the customize banner
         $customizeBanner.show();
       });
   }

@@ -127,11 +127,6 @@
       "features": ["Supplier integration", "Traceability systems", "Just-in-time support", "Quality documentation"]
     },
     {
-      "title": "EDI & Order Automation",
-      "description": "Custom EDI system integration connecting SPS Commerce and ERP platforms. Automate order processing, invoicing, and Advanced Shipping Notices (ASN) for major customers like Grainger and Zoro—running 7 days a week with zero manual entry.",
-      "features": ["EDI integration", "ERP connectivity", "Automated invoicing", "ASN processing"]
-    },
-    {
       "title": "Food & Beverage",
       "description": "Custom SSCC traceability systems for FDA food safety compliance. We design solutions that integrate with your ERP and WMS while deploying SHARC sensors for real-time productivity and automated print-and-apply functionality.",
       "features": ["FDA compliance", "SSCC traceability", "ERP/WMS integration", "24/7 support"]

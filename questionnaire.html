@@ -690,6 +690,27 @@
     }
 
     @media (max-width: 991px) {
+      .questionnaire-header {
+        flex-direction: column;
+        gap: 15px;
+        padding: 15px 20px;
+      }
+
+      .questionnaire-header h1 {
+        font-size: 18px;
+      }
+
+      .header-actions {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+      }
+
+      .header-actions .btn {
+        padding: 8px 12px;
+        font-size: 13px;
+      }
+
       .questionnaire-container {
         flex-direction: column;
       }
@@ -1449,19 +1470,18 @@
     // ==========================================
     // Initialization
     // ==========================================
-    document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('DOMContentLoaded', async function() {
       // Check if customization is enabled before initializing
-      checkCustomizeAccess().then(function(enabled) {
-        if (!enabled) {
-          // Redirect to home page if customization is disabled
-          document.body.innerHTML = '<div style="display: flex; align-items: center; justify-content: center; height: 100vh; text-align: center; color: #fff; font-family: sans-serif;"><div><h1>Customization Disabled</h1><p>The site owner has disabled customization.</p><a href="index.html" style="color: #c5a47e;">Return to Home</a></div></div>';
-          return;
-        }
-        loadExistingConfig();
-        setupEventListeners();
-        initRepeaterFields();
-        updatePreview();
-      });
+      const enabled = await checkCustomizeAccess();
+      if (!enabled) {
+        // Redirect to home page if customization is disabled
+        document.body.innerHTML = '<div style="display: flex; align-items: center; justify-content: center; height: 100vh; text-align: center; color: #fff; font-family: sans-serif;"><div><h1>Customization Disabled</h1><p>The site owner has disabled customization.</p><a href="index.html" style="color: #c5a47e;">Return to Home</a></div></div>';
+        return;
+      }
+      await loadExistingConfig();
+      setupEventListeners();
+      initRepeaterFields();
+      updatePreview();
     });
 
     // Check if customization is enabled (disabled if .disable-customization file exists)
@@ -1478,17 +1498,33 @@
       return true;
     }
 
-    function loadExistingConfig() {
-      // Try to load from localStorage
+    async function loadExistingConfig() {
+      // Try to load from localStorage first
       const saved = localStorage.getItem('siteConfig');
       if (saved) {
         try {
           currentConfig = JSON.parse(saved);
+          populateForm();
+          return;
         } catch (e) {
-          currentConfig = JSON.parse(JSON.stringify(siteConfig));
+          // Invalid localStorage, continue to try site-config.json
         }
-      } else {
+      }
+
+      // No localStorage - try to load site-config.json
+      try {
+        const response = await fetch('site-config.json');
+        if (response.ok) {
+          const siteConfigJson = await response.json();
+          currentConfig = JSON.parse(JSON.stringify(siteConfigJson));
+          console.log('Loaded from site-config.json');
+        } else {
+          throw new Error('site-config.json not found');
+        }
+      } catch (e) {
+        // Fall back to config.js defaults
         currentConfig = JSON.parse(JSON.stringify(siteConfig));
+        console.log('Loaded from config.js defaults');
       }
 
       populateForm();

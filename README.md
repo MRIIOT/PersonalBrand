@@ -62,7 +62,7 @@ Once your site is configured, you may want to disable the "Customize This Site" 
 4. Leave the file content empty
 5. Click **Commit new file**
 
-The button will change to "Brand Yourself" and link to the GitHub template for others to create their own site.
+The button will change to "Rebrand Myself" and link to RebrandMyself.net for others to create their own site.
 
 To re-enable customization later, simply delete the `customization.disable` file.
 
@@ -97,7 +97,7 @@ PersonalBrand/
 │   └── js/
 │       ├── config.js  # Default configuration
 │       └── template-engine.js  # Applies your config to pages
-└── customization.disable   # Create to show "Brand Yourself" instead
+└── customization.disable   # Create to show "Rebrand Myself" instead
 ```
 
 ---

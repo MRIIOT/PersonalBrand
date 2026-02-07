@@ -649,11 +649,11 @@
     fetch('customization.disable')
       .then(function(response) {
         if (response.ok) {
-          // File exists - change to "Brand Yourself" linking to GitHub
+          // File exists - change to "Rebrand Myself" linking to SaaS
           $customizeBanner
-            .attr('href', 'https://github.com/mriiot/PersonalBrand')
+            .attr('href', 'https://rebrandmyself.net')
             .attr('target', '_blank')
-            .html('<i class="fas fa-rocket"></i> Brand Yourself');
+            .html('<i class="fas fa-rocket"></i> Rebrand Myself');
         }
         $customizeBanner.show();
       })

@@ -41,7 +41,7 @@
   },
   "heroSlides": [
     {
-      "image": "https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?w=1920&q=80",
+      "image": "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=1920&q=80",
       "subtitle": "Industrial IoT Expert",
       "title": "Building Smart Factories",
       "description": "Digitally transforming manufacturing through innovative IoT solutions and Industry 4.0 expertise.",
@@ -49,7 +49,7 @@
       "buttonLink": "contact.html"
     },
     {
-      "image": "https://images.unsplash.com/photo-1573865526739-10659fec78a5?w=1920&q=80",
+      "image": "https://images.unsplash.com/photo-1581092160607-ee22621dd758?w=1920&q=80",
       "subtitle": "The SHARC Advantage",
       "title": "Connect Your Factory",
       "description": "The last mile of your factory network and the first mile of your information network.",
@@ -57,7 +57,7 @@
       "buttonLink": "services.html"
     },
     {
-      "image": "https://images.unsplash.com/photo-1543852786-1cf6624b9987?w=1920&q=80",
+      "image": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1920&q=80",
       "subtitle": "DIME Software Suite",
       "title": "Universal Connectivity",
       "description": "40+ protocol connectors with AI-powered configuration and neuromorphic analytics.",
@@ -65,7 +65,7 @@
       "buttonLink": "https://datainmotionenterprise.com"
     },
     {
-      "image": "https://images.unsplash.com/photo-1495360010541-f48722b34f7d?w=1920&q=80",
+      "image": "https://images.unsplash.com/photo-1639322537228-f710d846310a?w=1920&q=80",
       "subtitle": "Two Decades of Experience",
       "title": "Digital Transformation",
       "description": "Empowering manufacturers to make fact-based decisions with real-time data insights.",
@@ -165,32 +165,32 @@
       {
         "category": "CONNECT",
         "title": "Machine Connectivity",
-        "image": "https://images.unsplash.com/photo-1574158622682-e40e69881006?w=800&q=80"
+        "image": "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=800&q=80"
       },
       {
         "category": "COLLECT",
         "title": "Data Acquisition",
-        "image": "https://images.unsplash.com/photo-1533738363-b7f9aef128ce?w=800&q=80"
+        "image": "https://images.unsplash.com/photo-1674471361523-195aa08e69b5?w=800&q=80"
       },
       {
         "category": "COMBINE",
         "title": "System Integration",
-        "image": "https://images.unsplash.com/photo-1543852786-1cf6624b9987?w=800&q=80"
+        "image": "https://images.unsplash.com/photo-1487058792275-0ad4aaf24ca7?w=800&q=80"
       },
       {
         "category": "COMPUTE",
         "title": "Analytics & Insights",
-        "image": "https://images.unsplash.com/photo-1518791841217-8f162f1e1131?w=800&q=80"
+        "image": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80"
       },
       {
         "category": "CONVEY",
         "title": "Actionable Insights",
-        "image": "https://images.unsplash.com/photo-1494256997604-768d1f608cac?w=800&q=80"
+        "image": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80"
       },
       {
         "category": "SUPPORT",
         "title": "Training & Enablement",
-        "image": "https://images.unsplash.com/photo-1529778873920-4da4926a72c2?w=800&q=80"
+        "image": "https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&q=80"
       }
     ]
   },
@@ -372,18 +372,18 @@
     }
   ],
   "gallery": [
-    "https://images.unsplash.com/photo-1573865526739-10659fec78a5?w=600&q=80",
-    "https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?w=600&q=80",
-    "https://images.unsplash.com/photo-1495360010541-f48722b34f7d?w=600&q=80",
-    "https://images.unsplash.com/photo-1574158622682-e40e69881006?w=600&q=80",
-    "https://images.unsplash.com/photo-1533738363-b7f9aef128ce?w=600&q=80",
-    "https://images.unsplash.com/photo-1543852786-1cf6624b9987?w=600&q=80"
+    "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=600&q=80",
+    "https://images.unsplash.com/photo-1581092160607-ee22621dd758?w=600&q=80",
+    "https://images.unsplash.com/photo-1639322537228-f710d846310a?w=600&q=80",
+    "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=600&q=80",
+    "https://images.unsplash.com/photo-1674471361523-195aa08e69b5?w=600&q=80",
+    "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=600&q=80"
   ],
   "images": {
-    "heroBackground": "https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?w=1920&q=80",
-    "aboutImage": "https://images.unsplash.com/photo-1573865526739-10659fec78a5?w=800&q=80",
-    "parallaxImage1": "https://images.unsplash.com/photo-1495360010541-f48722b34f7d?w=1920&q=80",
-    "parallaxImage2": "https://images.unsplash.com/photo-1574158622682-e40e69881006?w=1920&q=80"
+    "heroBackground": "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=1920&q=80",
+    "aboutImage": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&q=80",
+    "parallaxImage1": "https://images.unsplash.com/photo-1639322537228-f710d846310a?w=1920&q=80",
+    "parallaxImage2": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1920&q=80"
   },
   "audit": {
     "title": "Free IIoT Assessment",
@@ -421,7 +421,7 @@
     "siteTitle": "Chris Misztur - Industrial IoT Expert",
     "siteDescription": "Building Smart Factories through digital transformation, IIoT solutions, and Industry 4.0 expertise. Two decades helping manufacturers leverage technology for operational excellence.",
     "keywords": "IIoT, Industrial IoT, Smart Factory, Industry 4.0, Digital Transformation, Manufacturing, SHARC, DIME, MTConnect, OPC-UA",
-    "ogImage": "https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?w=1200&q=80"
+    "ogImage": "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=1200&q=80"
   },
   "footer": {
     "tagline": "Building Smart Factories. Real and Virtual.",

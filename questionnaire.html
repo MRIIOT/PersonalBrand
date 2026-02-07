@@ -610,84 +610,7 @@
       color: var(--accent);
     }
 
-    /* Preview Panel */
-    .preview-panel {
-      width: 400px;
-      background: var(--secondary);
-      border-left: 1px solid var(--border);
-      padding: 30px;
-      position: sticky;
-      top: 70px;
-      height: calc(100vh - 70px);
-      overflow-y: auto;
-    }
-
-    .preview-panel h3 {
-      font-family: 'Montserrat', sans-serif;
-      margin-bottom: 20px;
-    }
-
-    .preview-card {
-      background: var(--primary);
-      border-radius: 12px;
-      overflow: hidden;
-      margin-bottom: 20px;
-    }
-
-    .preview-header {
-      height: 120px;
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      position: relative;
-    }
-
-    .preview-header .preview-logo {
-      position: absolute;
-      bottom: -30px;
-      left: 20px;
-      width: 60px;
-      height: 60px;
-      background: var(--secondary);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: bold;
-      border: 3px solid var(--primary);
-    }
-
-    .preview-content {
-      padding: 45px 20px 20px;
-    }
-
-    .preview-content h4 {
-      font-size: 18px;
-      margin-bottom: 5px;
-    }
-
-    .preview-content p {
-      font-size: 13px;
-      color: var(--text-muted);
-    }
-
-    .preview-colors {
-      display: flex;
-      gap: 10px;
-      margin-top: 15px;
-    }
-
-    .preview-color {
-      width: 30px;
-      height: 30px;
-      border-radius: 6px;
-      border: 2px solid var(--border);
-    }
-
     /* Responsive */
-    @media (max-width: 1400px) {
-      .preview-panel {
-        display: none;
-      }
-    }
 
     @media (max-width: 991px) {
       .questionnaire-header {
@@ -762,8 +685,8 @@
       <button class="btn btn-secondary" onclick="importConfig()">
         <i class="fas fa-upload"></i> Import
       </button>
-      <button class="btn btn-primary" onclick="saveAndPreview()">
-        <i class="fas fa-eye"></i> Save & Preview
+      <button class="btn btn-primary" onclick="saveConfig()">
+        <i class="fas fa-save"></i> Save
       </button>
     </div>
   </header>
@@ -1417,31 +1340,6 @@
       </section>
     </main>
 
-    <!-- Preview Panel -->
-    <aside class="preview-panel">
-      <h3><i class="fas fa-eye"></i> Live Preview</h3>
-
-      <div class="preview-card">
-        <div class="preview-header" id="previewHeader">
-          <div class="preview-logo" id="previewLogo">JD</div>
-        </div>
-        <div class="preview-content">
-          <h4 id="previewName">Your Name</h4>
-          <p id="previewTitle">Your Professional Title</p>
-          <div class="preview-colors">
-            <div class="preview-color" id="previewColorPrimary" style="background: #000;"></div>
-            <div class="preview-color" id="previewColorSecondary" style="background: #090909;"></div>
-            <div class="preview-color" id="previewColorAccent" style="background: #c5a47e;"></div>
-          </div>
-        </div>
-      </div>
-
-      <div style="margin-top: 30px;">
-        <a href="index.html" class="btn btn-primary" style="width: 100%; justify-content: center;">
-          <i class="fas fa-external-link-alt"></i> Preview Full Site
-        </a>
-      </div>
-    </aside>
   </div>
 
   <!-- Hidden file input for import -->
@@ -1481,7 +1379,6 @@
       await loadExistingConfig();
       setupEventListeners();
       initRepeaterFields();
-      updatePreview();
     });
 
     // Check if customization is enabled (disabled if customization.disable file exists)
@@ -1546,12 +1443,10 @@
         if (picker && text) {
           picker.addEventListener('input', () => {
             text.value = picker.value;
-            updatePreview();
           });
           text.addEventListener('input', () => {
             if (/^#[0-9A-Fa-f]{6}$/.test(text.value)) {
               picker.value = text.value;
-              updatePreview();
             }
           });
         }
@@ -1560,12 +1455,6 @@
       // Image preview updates
       document.getElementById('logoUrl')?.addEventListener('input', updateLogoPreview);
       document.getElementById('aboutImage')?.addEventListener('input', updateAboutImagePreview);
-
-      // Live preview updates
-      document.getElementById('firstName')?.addEventListener('input', updatePreview);
-      document.getElementById('lastName')?.addEventListener('input', updatePreview);
-      document.getElementById('title')?.addEventListener('input', updatePreview);
-      document.getElementById('siteName')?.addEventListener('input', updatePreview);
     }
 
     // ==========================================
@@ -2091,29 +1980,6 @@
       }
     }
 
-    // ==========================================
-    // Live Preview Update
-    // ==========================================
-    function updatePreview() {
-      const firstName = document.getElementById('firstName')?.value || 'Your';
-      const lastName = document.getElementById('lastName')?.value || 'Name';
-      const title = document.getElementById('title')?.value || 'Professional Title';
-      const siteName = document.getElementById('siteName')?.value || 'YourBrand';
-
-      document.getElementById('previewName').textContent = `${firstName} ${lastName}`;
-      document.getElementById('previewTitle').textContent = title;
-      document.getElementById('previewLogo').textContent = `${firstName.charAt(0)}${lastName.charAt(0)}`;
-
-      // Colors
-      const primary = document.getElementById('colorPrimary')?.value || '#000000';
-      const secondary = document.getElementById('colorSecondary')?.value || '#090909';
-      const accent = document.getElementById('colorAccent')?.value || '#c5a47e';
-
-      document.getElementById('previewColorPrimary').style.background = primary;
-      document.getElementById('previewColorSecondary').style.background = secondary;
-      document.getElementById('previewColorAccent').style.background = accent;
-      document.getElementById('previewHeader').style.background = `linear-gradient(135deg, ${accent} 0%, ${secondary} 100%)`;
-    }
 
     // ==========================================
     // Collect Form Data
@@ -2285,11 +2151,6 @@
       });
     }
 
-    function saveAndPreview() {
-      saveConfig();
-      window.open('index.html', '_blank');
-    }
-
     function exportConfig() {
       const config = collectFormData();
       const errors = validateConfig(config);
@@ -2331,7 +2192,6 @@
           localStorage.setItem('siteConfig', JSON.stringify(config));
           populateForm();
           initRepeaterFields();
-          updatePreview();
           alert('Configuration imported successfully!');
         } catch (err) {
           alert('Error importing configuration. Please check the file format.');
@@ -2370,7 +2230,6 @@
 
         populateForm();
         initRepeaterFields();
-        updatePreview();
         document.querySelectorAll('.progress-dot').forEach(dot => {
           dot.classList.remove('completed');
         });
